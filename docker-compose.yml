@@ -1,0 +1,45 @@
+version: "3.4"
+services:
+  redis:
+    image: redis:6
+    networks: [inner]
+  webapi:
+    build: .
+    image: otn-api
+    depends_on: [redis]
+    ports: ["127.0.0.1:33960:33960"]
+    networks: [inner]
+    restart: on-failure
+    command: web-api
+    env_file: [deploy/compose/main.env]
+  loginApi:
+    build: .
+    image: otn-api
+    depends_on: [redis]
+    ports: ["127.0.0.1:34960:34960"]
+    networks: [inner]
+    restart: on-failure
+    command: login-api
+    env_file: [deploy/compose/main.env]
+  paramsApi:
+    build: .
+    image: otn-api
+    depends_on: [redis]
+    ports:
+      - "39964:39964"
+    networks: [inner]
+    restart: on-failure
+    command: params-api
+    env_file: [deploy/compose/main.env]
+  listenningApi:
+    build: .
+    image: otn-api
+    depends_on: [redis]
+    ports:
+      - "39966:39966"
+    networks: [inner]
+    restart: on-failure
+    command: listenning-api
+    env_file: [deploy/compose/main.env]
+networks:
+  inner: {}
