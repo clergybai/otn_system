@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from fastapi import status
 from common.msg import message
 from datetime import datetime, timezone, timedelta
@@ -87,5 +87,37 @@ class DataListResponse(OtnBaseResponse):
 
 
 class UpdateResponse(OtnBaseResponse):
+    code_type: int = status.HTTP_200_OK
+    data: bool
+
+
+class UserRequest(BaseModel):
+    cellphone_num: str
+    city: str
+    create_time: str
+    department: str
+    is_active: str
+    last_update_person: str
+    name: str
+    post: str
+    remark: str
+    role: str
+    salt: Optional[str] = None
+    update_time: str
+    user_email: EmailStr
+    user_name: str
+
+
+class PwdUpdateRequest(BaseModel):
+    userName: str
+    salt: str
+    resalt: str
+
+
+class AddUserResponse(OtnBaseResponse):
+    data: int
+
+
+class RemoveUserResponse(OtnBaseResponse):
     code_type: int = status.HTTP_200_OK
     data: bool

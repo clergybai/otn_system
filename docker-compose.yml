@@ -7,7 +7,7 @@ services:
     build: .
     image: otn-api
     depends_on: [redis]
-    ports: ["127.0.0.1:33960:33960"]
+    ports: ["127.0.0.1:49960:49960"]
     networks: [inner]
     restart: on-failure
     command: web-api
@@ -16,7 +16,7 @@ services:
     build: .
     image: otn-api
     depends_on: [redis]
-    ports: ["127.0.0.1:34960:34960"]
+    ports: ["127.0.0.1:54393:54393"]
     networks: [inner]
     restart: on-failure
     command: login-api
@@ -26,7 +26,7 @@ services:
     image: otn-api
     depends_on: [redis]
     ports:
-      - "39964:39964"
+      - "49964:49964"
     networks: [inner]
     restart: on-failure
     command: params-api
@@ -36,7 +36,7 @@ services:
     image: otn-api
     depends_on: [redis]
     ports:
-      - "39966:39966"
+      - "49966:49966"
     networks: [inner]
     restart: on-failure
     command: listenning-api

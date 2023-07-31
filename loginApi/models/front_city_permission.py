@@ -36,3 +36,13 @@ class FrontCityPermission(EmptyModel):
     @classmethod
     def get_cities(cls):
         return lo_session.query(cls.city).filter(cls.net_level.like('本地%')).group_by(cls.city).all()
+
+    @classmethod
+    def bulk_add(cls, kwargs_list):
+        front_city_permission_list = []
+        for kwargs in kwargs_list:
+            front_city_permission = cls(**kwargs)
+            front_city_permission_list.append(front_city_permission)
+        if len(front_city_permission_list) > 0:
+            lo_session.add_all(front_city_permission_list)
+            lo_session.commit()

@@ -3,16 +3,17 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import sqlalchemy as sa
 import datetime
+from enum import Enum
 import sshtunnel
 from urllib.parse import quote_plus as urlquote
 from common.config import settings
 
 # For test only
-tunnel = sshtunnel.SSHTunnelForwarder(
-    ('192.168.1.80'), ssh_username='root', ssh_password='gdc123.',
-    remote_bind_address=('127.0.0.1', 5432)
-)
-tunnel.start()
+# tunnel = sshtunnel.SSHTunnelForwarder(
+#     ('192.168.1.80'), ssh_username='root', ssh_password='gdc123.',
+#     remote_bind_address=('127.0.0.1', 5432)
+# )
+# tunnel.start()
 # end for test only
 
 
@@ -36,7 +37,8 @@ PG_DIM_SQLALCHEMY_DATABASE_URL = "postgresql://{usr}:{pwd}@{db}:{port}/{schema}"
     usr=settings.db_pg_username,
     pwd=settings.db_pg_password,
     db=settings.db_pg_hostname,
-    port=tunnel.local_bind_port,
+    port=settings.db_pg_port,
+    # port=tunnel.local_bind_port,
     schema=settings.db_pg_schema
 )
 
@@ -53,6 +55,12 @@ pg_session = orm.scoped_session(Tr_Session)
 
 
 Base = declarative_base()
+
+
+class SqlOperation(Enum):
+    INSERT = 'insert'
+    UPDATE = 'update'
+    DELETE = 'delete'
 
 
 class ModelBase(object):

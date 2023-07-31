@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from .database import (Base, lo_engine,)
 from .routers import (permissions, login, log, user)

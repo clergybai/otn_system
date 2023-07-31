@@ -6,7 +6,7 @@ from ..database import EmptyModel, lo_session
 
 class User(EmptyModel):
     __tablename__ = "user"
-    
+
     user_name = sa.Column(sa.VARCHAR(31), primary_key=True)
     name = sa.Column(sa.VARCHAR(15), nullable=False)
     salt = sa.Column(sa.VARCHAR(63), nullable=True)
@@ -22,10 +22,10 @@ class User(EmptyModel):
     update_time = sa.Column(sa.DateTime, default=datetime.datetime.utcnow,
                             onupdate=datetime.datetime.utcnow)
     last_update_person = sa.Column(sa.VARCHAR(31), nullable=False)
-    
+
     def __repr__(self) -> str:
         return '<User {usrname}>'.format(usrname=self.user_name)
-    
+
     def __init__(self, user_name, name, salt, user_email, cellphone_num, city,
                  role, department, post, remark, is_active, last_update_person):
         self.user_name = user_name
@@ -73,3 +73,18 @@ class User(EmptyModel):
         for key, val in kwargs.items():
             query = query.filter(getattr(cls, key).like('%'+val+'%'))
         return query.order_by(cls.user_name).all()
+
+    @classmethod
+    def add_user(cls, **kwargs):
+        new_user = cls(
+            **kwargs)
+        lo_session.add(new_user)
+        lo_session.commit()
+
+    @classmethod
+    def update_user(cls, user_name, **kwargs):
+        rows_updated = lo_session.query(cls).filter_by(user_name=user_name).update(kwargs)
+        lo_session.commit()
+        if rows_updated > 0:
+            return True
+        return False

@@ -183,9 +183,7 @@ class RsaGenerator(object):
             yu = len(base64_public_key) - cnt
         key += "-----END PUBLIC KEY-----"
         return key
-        
-    
-    
+
     @classmethod
     def gen_xml_jave_formatted(cls, private_key):
         public_key = private_key.public_key()
@@ -280,6 +278,11 @@ class Md5Generator(object):
     def md5(cls, message):
         md5_hash = hashlib.md5(message.encode('utf-8'))
         return '0' + binascii.hexlify(md5_hash.digest(), sep='0').decode('utf-8')
+
+    @classmethod
+    def general_md5(cls, message):
+        md5_hash = hashlib.md5(message.encode('utf-8'))
+        return str(md5_hash)
 
 
 if __name__ == "__main__":

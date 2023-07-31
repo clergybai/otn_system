@@ -67,3 +67,13 @@ class InputOaBoardType(EmptyModel):
     @classmethod
     def update(cls, filters, **kwargs):
         return tr_session.query(cls).filter_by(**filters).update(**kwargs)
+
+    @classmethod
+    def bulk_add(cls, kwargs_list):
+        input_top_data_list = []
+        for kwargs in kwargs_list:
+            input_top_data = cls(**kwargs)
+            input_top_data_list.append(input_top_data)
+        if len(input_top_data_list) > 0:
+            tr_session.add_all(input_top_data_list)
+            tr_session.commit()

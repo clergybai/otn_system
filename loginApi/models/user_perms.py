@@ -18,14 +18,14 @@ class UserPerms(EmptyModel):
     can_set_channel_num = sa.Column(sa.Integer, default=0)
     create_time = sa.Column(sa.DateTime, server_default=sa.text('CURRENT_TIMESTAMP'))
     last_update_person = sa.Column(sa.VARCHAR(31))
-    
+
     def __init__(self, user_name, zone_authen, can_add_standrad_param,
                  can_modify_base_line, can_threshold_setting, can_add_user,
                  can_modify_prems, can_output_hiddentrouble, can_save_topo_position,
-                 can_set_channel_num, last_update_person):
+                 can_set_channel_num, last_update_person, create_time=datetime.now()):
         self.user_name = user_name
         self.zone_authen = zone_authen,
-        self.can_add_standrad_param= can_add_standrad_param,
+        self.can_add_standrad_param = can_add_standrad_param,
         self.can_modify_base_line = can_modify_base_line,
         self.can_threshold_setting = can_threshold_setting,
         self.can_add_user = can_add_user,
@@ -33,7 +33,7 @@ class UserPerms(EmptyModel):
         self.can_output_hiddentrouble = can_output_hiddentrouble,
         self.can_save_topo_position = can_save_topo_position,
         self.can_set_channel_num = can_set_channel_num,
-        self.create_time = datetime.now(),
+        self.create_time = create_time,
         self.last_update_person = last_update_person
 
     def to_dict(self):
@@ -62,7 +62,7 @@ class UserPerms(EmptyModel):
 
     @classmethod
     def add_new_user_perm(cls, **kwargs):
-        user_perm = cls(kwargs)
+        user_perm = cls(**kwargs)
         lo_session.add(user_perm)
         lo_session.commit()
         return user_perm.to_dict()
