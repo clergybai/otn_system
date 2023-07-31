@@ -6,7 +6,7 @@ from common.database import EmptyModel, pg_session
 class PgInputUpdateTimestamp(EmptyModel):
     __tablename__ = "pg_input_update_timestamp"
 
-    pg_input_topology_data = sa.Column(sa.DateTime, nullable=False)
+    pg_input_topology_data = sa.Column(sa.DateTime, primary_key=True, nullable=False)
     pg_input_optical_ne = sa.Column(sa.DateTime, nullable=False)
     pg_input_oa_board_type = sa.Column(sa.DateTime, nullable=False)
     pg_input_voa_config = sa.Column(sa.DateTime, nullable=False)
@@ -17,3 +17,7 @@ class PgInputUpdateTimestamp(EmptyModel):
     @classmethod
     def get_all(cls):
         return pg_session.query(cls).all()
+
+    @classmethod
+    def update(cls, **kwargs):
+        return pg_session.query(cls).update(**kwargs)

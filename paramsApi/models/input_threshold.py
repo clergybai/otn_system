@@ -1,4 +1,6 @@
 import sqlalchemy as sa
+from sqlalchemy import func
+from sqlalchemy.inspection import inspect
 from datetime import datetime
 from common.database import EmptyModel, tr_session
 import uuid
@@ -170,3 +172,19 @@ class InputThreshold(EmptyModel):
         updated = query.update(kwargs)
         tr_session.commit()
         return updated > 0
+
+    @classmethod
+    def get_count(cls, **filters) -> int:
+        query = tr_session.query(func.count(inspect(cls).primary_key[0]))
+        for key, val in filters.items():
+            if isinstance(val, list):
+                query = query.filter(getattr(cls, key).in_(val))
+            else:
+                query = query.filter_by(**{key: val})
+        count = query.scalar()
+        return count
+
+    @classmethod
+    def bulk_update(cls, update_mappings):
+        tr_session.bulk_update_mappings(cls, update_mappings)
+        tr_session.commit()

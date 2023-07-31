@@ -1,4 +1,6 @@
 import sqlalchemy as sa
+from sqlalchemy import func
+from sqlalchemy.inspection import inspect
 import uuid
 from datetime import datetime
 from common.database import EmptyModel, tr_session
@@ -35,6 +37,10 @@ class InputOmsBusinessWaves(EmptyModel):
         self.is_history = is_history
 
     @classmethod
+    def get_input_oms_business_waves(cls, **kwargs):
+        return tr_session.query(cls).filter_by(**kwargs).all()
+
+    @classmethod
     def get_oms_by_filter(cls, **kwargs):
         param = kwargs.get('param')
         city_list = []
@@ -69,3 +75,40 @@ class InputOmsBusinessWaves(EmptyModel):
             start = idx * page_size
             query = query.offset(start).limit(page_size)
         return (total, query.all())
+
+    @classmethod
+    def get_count(cls, **filters) -> int:
+        query = tr_session.query(func.count(inspect(cls).primary_key[0]))
+        for key, val in filters.items():
+            if isinstance(val, list):
+                query = query.filter(getattr(cls, key).in_(val))
+            else:
+                query = query.filter_by(**{key: val})
+        count = query.scalar()
+        return count
+
+    @classmethod
+    def execute_raw_sql(cls, sql_str):
+        query = tr_session.execute(sql_str)
+        return query.fetchall()
+
+    @classmethod
+    def delete(cls, **kwargs) -> bool:
+        rows_del = tr_session.query(cls).filter_by(**kwargs).delete()
+        return rows_del > 0
+
+    @classmethod
+    def update(cls, filters, **kwargs):
+        rows_updated = tr_session.query(cls).filter_by(**filters).update(**kwargs)
+        tr_session.commit()
+        return rows_updated > 0
+
+    @classmethod
+    def add_input_oms_bizs(cls, input_oms_bizs):
+        tr_session.add_all(input_oms_bizs)
+        tr_session.commit()
+
+    @classmethod
+    def bulk_update(cls, update_mappings):
+        tr_session.bulk_update_mappings(cls, update_mappings)
+        tr_session.commit()

@@ -10,4 +10,3 @@ class ObjNode(EmptyModel):
     sys_id = sa.Column(sa.VARCHAR(63), nullable=False)
     ne_name = sa.Column(sa.VARCHAR(63), default=None)
     ne_sub_name = sa.Column(sa.VARCHAR(63), default=None)
-    

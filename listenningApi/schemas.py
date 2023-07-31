@@ -13,3 +13,8 @@ class OtnBaseResponse(BaseModel):
 class ComputedStateResponse(OtnBaseResponse):
     code_type: int = status.HTTP_200_OK
     data: int
+
+
+class StartComputedResponse(OtnBaseResponse):
+    code_type: int = status.HTTP_200_OK
+    data: bool

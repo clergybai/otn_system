@@ -29,5 +29,6 @@ def upsert_user_perm(**kwargs):
     if user_perm:
         return UserPerms.update(user_name=user_name, **kwargs)
     else:
-        UserPerms.add_new_user_perm(kwargs=kwargs)
+        kwargs['user_name'] = user_name
+        UserPerms.add_new_user_perm(**kwargs)
         return True
