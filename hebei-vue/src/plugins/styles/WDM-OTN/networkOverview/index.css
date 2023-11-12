@@ -1,0 +1,301 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.content {
+  padding: 10px 20px 10px 20px;
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow-anchor: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.content .header {
+  padding: 0px 0px 10px 0px;
+  width: 100%;
+  height: 90px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.content .header .searchTemplate {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-anchor: none;
+  overflow-y: hidden;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.content .header .searchTemplate::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.content .header .searchTemplate .el-form {
+  padding: 10px 20px;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.content .header .searchTemplate .el-form .el-form-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+}
+
+.content .header .searchTemplate .el-form .el-form-item:not(.el-form-item:nth-of-type(1)) {
+  margin-left: 50px;
+}
+
+.content .header .searchTemplate .el-form .btnSearch {
+  padding: 20px 40px;
+  border: none;
+  outline: none;
+  background-color: var(--theme-color);
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.content .header .searchTemplate .el-form .btnSearch:hover,
+.content .header .searchTemplate .el-form .btnSearch:focus {
+  border: none;
+  outline: none;
+  background-color: var(--theme-color);
+  color: #fff;
+}
+
+.content > .body {
+  width: 100%;
+  min-height: calc(100% - 90px);
+}
+
+.content > .body .hiddenCardOne {
+  padding: 10px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+}
+
+.content > .body .hiddenCardOne .untreatedHiddenDanger,
+.content > .body .hiddenCardOne .hiddenContent,
+.content > .body .hiddenCardOne .networkLevelNumberHidden {
+  padding: 15px 20px;
+  width: 32.5%;
+  min-width: 400px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  border-radius: 10px;
+  background-color: var(--white);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+}
+
+.content > .body .hiddenCardOne .untreatedHiddenDanger #untreatedHiddenDanger,
+.content > .body .hiddenCardOne .untreatedHiddenDanger #hiddenContent,
+.content > .body .hiddenCardOne .untreatedHiddenDanger #networkLevelNumberHidden,
+.content > .body .hiddenCardOne .hiddenContent #untreatedHiddenDanger,
+.content > .body .hiddenCardOne .hiddenContent #hiddenContent,
+.content > .body .hiddenCardOne .hiddenContent #networkLevelNumberHidden,
+.content > .body .hiddenCardOne .networkLevelNumberHidden #untreatedHiddenDanger,
+.content > .body .hiddenCardOne .networkLevelNumberHidden #hiddenContent,
+.content > .body .hiddenCardOne .networkLevelNumberHidden #networkLevelNumberHidden {
+  width: 100%;
+  min-height: 300px;
+}
+
+.content > .body .hiddenCardOne .untreatedHiddenDanger span,
+.content > .body .hiddenCardOne .hiddenContent span,
+.content > .body .hiddenCardOne .networkLevelNumberHidden span {
+  width: 100%;
+  height: 30px;
+  color: var(--black);
+  font-size: 15px;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.content > .body .hiddenCardTwo {
+  padding: 10px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+}
+
+.content > .body .hiddenCardTwo .untreatedNumberHiddenCity,
+.content > .body .hiddenCardTwo .annualRisk {
+  padding: 15px 20px;
+  min-width: 400px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+  border-radius: 10px;
+  background-color: var(--white);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+}
+
+.content > .body .hiddenCardTwo .untreatedNumberHiddenCity #untreatedNumberHiddenCity,
+.content > .body .hiddenCardTwo .untreatedNumberHiddenCity #annualRisk,
+.content > .body .hiddenCardTwo .annualRisk #untreatedNumberHiddenCity,
+.content > .body .hiddenCardTwo .annualRisk #annualRisk {
+  width: 100%;
+  min-height: 430px;
+}
+
+.content > .body .hiddenCardTwo .untreatedNumberHiddenCity span,
+.content > .body .hiddenCardTwo .annualRisk span {
+  width: 100%;
+  height: 30px;
+  color: var(--black);
+  font-size: 15px;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.content > .body .hiddenCardThree,
+.content > .body .hiddenCardFour {
+  padding: 10px 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.content > .body .hiddenCardThree .cityHiddenStatisticalList,
+.content > .body .hiddenCardFour .cityHiddenStatisticalList {
+  padding: 15px 20px;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border-radius: 10px;
+  background-color: var(--white);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.content > .body .hiddenCardThree .cityHiddenStatisticalList span,
+.content > .body .hiddenCardFour .cityHiddenStatisticalList span {
+  width: 100%;
+  height: 30px;
+  color: var(--black);
+  font-size: 15px;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.content > .body .hiddenCardThree .cityHiddenStatisticalList .cityHiddenTableData,
+.content > .body .hiddenCardFour .cityHiddenStatisticalList .cityHiddenTableData {
+  padding: 10px 0;
+  width: 100%;
+}
+/*# sourceMappingURL=index.css.map */

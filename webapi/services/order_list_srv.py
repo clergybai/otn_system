@@ -1,6 +1,47 @@
+from sqlalchemy import text
 from ..models.order_list import OrderList
 import datetime
+from common.database import Tr_Session
 from dateutil.relativedelta import relativedelta
+
+
+def join_arr(param):
+    search = "("
+    for item in param:
+        if item == "二干/省内骨干网":
+            continue
+        search += f"'{item}',"
+    
+    if len(search) > 1:
+        search = search[:-1] + ")"
+    else:
+        search += "')"
+    
+    return search
+
+
+def check_search(data, prefix=""):
+    where = "where"
+    and_ = "and"
+    search_cmd = ""
+    if prefix == "":
+        search_cmd = where
+    else:
+        search_cmd = prefix + " " + and_
+    if data.city and "all" not in data.city:
+        search_cmd += " city = '" + data.city + "' " + and_
+    if data.network_level and "all" not in data.network_level:
+        search_cmd += " network_level = '" + data.network_level + "' " + and_
+    if data.startTime and data.endTime:
+        search_cmd += " discover_time between '" + data.startTime + "' and '" + data.endTime + "'"
+    where_index = search_cmd.rfind(where)
+    and_index = search_cmd.rfind(and_)
+    length = len(search_cmd)
+    if (length - where_index) == len(where):
+        search_cmd = ""
+    elif (length - and_index) == len(and_):
+        search_cmd = search_cmd[:and_index]
+    return search_cmd
 
 
 class OrderListService(object):
@@ -211,20 +252,10 @@ class OrderListService(object):
     @classmethod
     def get_trouble_by_filter(cls, **kwargs):
         total, items = OrderList.get_trouble_by_filter(**kwargs)
-        
-        print(f"total: {total}, items: {str(items)}")
-        
-        return total, [{
+        return total, ({
             'id': item.id,
             'order_id': item.order_id,
-            'risk_id': item.risk_id,
-            'risk_hash': item.risk_hash,
-            'source_ne_id': item.source_ne_id,
-            'source_ne_sub_name': item.source_ne_sub_name,
-            'source_shelf_id': item.source_shelf_id,
-            'source_slot_id': item.source_slot_id,
-            'target_ne_id': item.target_ne_id,
-            'target_ne_sub_name': item.target_ne_sub_name,
+            'discover_time': item.discover_time,
             'city': item.city,
             'district_county': item.district_county,
             'sys_name': item.sys_name,
@@ -232,19 +263,201 @@ class OrderListService(object):
             'network_level': item.network_level,
             'manufactor': item.manufactor,
             'risk_level': item.risk_level,
-            'risk_type': item.risk_type,
             'risk_content': item.risk_content,
-            'current_value': item.current_value,
-            'standard_value': item.standard_value,
-            'unit_measurement': item.unit_measurement,
-            'discover_time': item.discover_time,
-            'is_send_top': item.is_send_top,
-            'is_top_end': item.is_top_end,
-            'top_feedback_message': item.top_feedback_message,
-            'top_order_end_time': item.top_order_end_time,
-            'timestamp': item.timestamp,
-            'is_history': item.is_history
-            } for item in items]
+            } for item in items)
+        
+        # return total, [{
+        #     'id': item.id,
+        #     'order_id': item.order_id,
+        #     'risk_id': item.risk_id,
+        #     'risk_hash': item.risk_hash,
+        #     'source_ne_id': item.source_ne_id,
+        #     'source_ne_sub_name': item.source_ne_sub_name,
+        #     'source_shelf_id': item.source_shelf_id,
+        #     'source_slot_id': item.source_slot_id,
+        #     'target_ne_id': item.target_ne_id,
+        #     'target_ne_sub_name': item.target_ne_sub_name,
+        #     'city': item.city,
+        #     'district_county': item.district_county,
+        #     'sys_name': item.sys_name,
+        #     'oms': item.oms,
+        #     'network_level': item.network_level,
+        #     'manufactor': item.manufactor,
+        #     'risk_level': item.risk_level,
+        #     'risk_type': item.risk_type,
+        #     'risk_content': item.risk_content,
+        #     'current_value': item.current_value,
+        #     'standard_value': item.standard_value,
+        #     'unit_measurement': item.unit_measurement,
+        #     'discover_time': item.discover_time,
+        #     'is_send_top': item.is_send_top,
+        #     'is_top_end': item.is_top_end,
+        #     'top_feedback_message': item.top_feedback_message,
+        #     'top_order_end_time': item.top_order_end_time,
+        #     'timestamp': item.timestamp,
+        #     'is_history': item.is_history
+        #     } for item in items]
+
+    @classmethod
+    def getTop_end(cls, req):
+        with Tr_Session() as session:
+            cmd = "select (select count(*) from `order_list` " + check_search(req) + ") tabCount,count(*) top_endCount from `order_list`" + check_search(req, " where is_top_end = '0' ") + ";"
+            return session.execute(text(cmd))
+
+    @classmethod
+    def getRisk_typeGroup(cls, req):
+        with Tr_Session() as session:
+            cmd = "select count(*) count,risk_type from `order_list` " + check_search(req) + " group by risk_type;"
+            return session.execute(text(cmd))
+
+    @classmethod
+    def getNetwork_levelGroup(cls, req):
+        with Tr_Session() as session:
+            cmd = "select count(*) count,network_level from order_list " + check_search(req) + " group by network_level;"
+            return session.execute(text(cmd))
+
+    @classmethod
+    def getHiddenCityGroup(cls):
+        with Tr_Session() as session:
+            cmd = """select orders.*,coalesce(untreated.count,0) untreatedCount,coalesce(processed.count,0) processedCount from 
+            (select city,count(*) count from order_list group by city) 
+            orders left join (select city,count(*) count from order_list where is_top_end = 0 group by city) untreated 
+            on orders.city = untreated.city 
+            left join (select city,count(*) count from order_list where is_top_end = 1 group by city) processed 
+            on orders.city = processed.city order by untreatedCount desc;"""
+            return session.execute(text(cmd))
+    
+    @classmethod
+    def getAnnualRiskGroup(cls):
+        with Tr_Session() as session:
+            cmd = """select orders.*,coalesce(untreated.count,0) untreatedCount,coalesce(processed.count,0) processedCount from (select count(is_top_end) count,date_format(timestamp,'%m') timestamp from order_list group by date_format(timestamp,'%m')) orders 
+            left join(select date_format(timestamp,'%m') timestamp,count(is_top_end) count from order_list where is_top_end = 0 group by date_format(timestamp, '%m')) untreated 
+            on orders.timestamp = untreated.timestamp 
+            left join(select date_format(timestamp,'%m') timestamp,count(is_top_end) count from order_list where is_top_end = 1 group by date_format(timestamp, '%m')) processed 
+            on orders.timestamp = processed.timestamp;"""
+            return session.execute(text(cmd))
+
+    @classmethod
+    def getHiddenNetwork(cls):
+        with Tr_Session() as session:
+            cmd = "select distinct network_level from `order_list` where network_level != '' group by network_level;"
+            return session.execute(text(cmd))
+    
+    @classmethod
+    def getHazardLevelCityGroup(cls, req):
+        if len(req.selected) == 0:
+            return None
+        with Tr_Session() as session:
+            join = " INNER JOIN "
+            generalCmd = """select orders.city,orders.count general_count,coalesce(untreated.count,0) general_untreatedCount,coalesce(processed.count,0) general_processedCount, orders.discover_time discover_time from  
+                (select city,count(*) count, any_value(discover_time) as discover_time from `order_list` where risk_level = '一般' group by city) orders 
+                left join (select city,count(*) count from `order_list` where is_top_end = 0 and risk_level = '一般' group by city) untreated 
+                on orders.city = untreated.city 
+                left join (select city,count(*) count from `order_list` where is_top_end = 1 and risk_level = '一般' group by city) processed 
+                on orders.city = processed.city """
+            emergencyCmd = """select orders.city,orders.count emergency_count,coalesce(untreated.count,0) emergency_untreatedCount,coalesce(processed.count,0) emergency_processedCount, orders.discover_time from  
+                (select city,count(*) count, any_value(discover_time) as discover_time from `order_list` where risk_level = '紧急' group by city) orders 
+                left join (select city,count(*) count from `order_list` where is_top_end = 0 and risk_level = '紧急' group by city) untreated 
+                on orders.city = untreated.city 
+                left join (select city,count(*) count from `order_list` where is_top_end = 1 and risk_level = '紧急' group by city) processed 
+                on orders.city = processed.city """
+            if "二干/省内骨干网" not in req.selected:
+                joinStr = join_arr(req.selected)
+                generalCmd += f" where orders.city in {joinStr}"
+                emergencyCmd += f" where orders.city in {joinStr}"
+            generalCmd += ";"
+            emergencyCmd += ";"
+            generalData = session.execute(text(generalCmd))
+            emergencyData = session.execute(text(emergencyCmd))
+            if generalData.rowcount > emergencyData.rowcount:
+                join = " LEFT JOIN "
+            elif generalData.rowcount < emergencyData.rowcount:
+                join = " RIGHT JOIN "
+            cmd = """select IFNULL(general.city, emergency.city) city,coalesce(general.general_count,0) general_count,coalesce(general.general_untreatedCount,0) general_untreatedCount,coalesce(general.general_processedCount,0) general_processedCount, 
+                coalesce(emergency.emergency_count,0) emergency_count,coalesce(emergency.emergency_untreatedCount,0) emergency_untreatedCount,coalesce(emergency.emergency_processedCount,0) emergency_processedCount 
+                from (select orders.city,orders.count general_count,coalesce(untreated.count,0) general_untreatedCount,coalesce(processed.count,0) general_processedCount, orders.discover_time discover_time from  
+                (select city,count(*) count, any_value(discover_time) as discover_time from `order_list` where risk_level = '一般' group by city) orders 
+                left join (select city,count(*) count from `order_list` where is_top_end = 0 and risk_level = '一般' group by city) untreated 
+                on orders.city = untreated.city 
+                left join (select city,count(*) count from `order_list` where is_top_end = 1 and risk_level = '一般' group by city) processed 
+                on orders.city = processed.city) general """ + join + """ (select orders.city,orders.count emergency_count,coalesce(untreated.count,0) emergency_untreatedCount,coalesce(processed.count,0) emergency_processedCount, orders.discover_time from  
+                (select city,count(*) count, any_value(discover_time) as discover_time from `order_list` where risk_level = '紧急' group by city) orders 
+                left join (select city,count(*) count from `order_list` where is_top_end = 0 and risk_level = '紧急' group by city) untreated 
+                on orders.city = untreated.city 
+                left join (select city,count(*) count from `order_list` where is_top_end = 1 and risk_level = '紧急' group by city) processed 
+                on orders.city = processed.city) emergency 
+                on general.city = emergency.city"""
+            if (req.timesArr.startTime != "" and req.timesArr.startTime):
+                cmd += f" and (general.discover_time between '{req.timesArr.startTime}' and '{req.timesArr.endTime}') and (emergency.discover_time between '{req.timesArr.startTime}' and '{req.timesArr.endTime}')"
+            if (len(req.selected) and ("二干/省内骨干网" not in req.selected)):
+                joinStr = join_arr(req.selected)
+                cmd += f" where general.city in {joinStr} or emergency.city in {joinStr} AND (general.city != '' or emergency.city != '');"
+            else:
+                cmd += " where (general.city != '' and emergency.city != '');"
+            return session.execute(text(cmd))
+
+    @classmethod
+    def getHazardLevelDistrictGroup(cls, req):
+        with Tr_Session() as session:
+            join = " INNER JOIN "
+            generalCmd = f"""select orders.district_county,orders.count general_count,coalesce(untreated.count,0) general_untreatedCount,coalesce(processed.count,0) general_processedCount, orders.discover_time from  
+                (select district_county,count(*) count, any_value(discover_time) as discover_time from order_list where risk_level = '一般' and city = '{req.city}' group by district_county) orders 
+                left join (select district_county,count(*) count from order_list where is_top_end = 0 and risk_level = '一般' and city = '{req.city}' group by district_county) untreated 
+                on orders.district_county = untreated.district_county 
+                left join (select district_county,count(*) count from order_list where is_top_end = 1 and risk_level = '一般' and city = '{req.city}' group by district_county) processed 
+                on orders.district_county = processed.district_county;
+            """
+            emergencyCmd = f"""select orders.district_county,orders.count emergency_count,coalesce(untreated.count,0) emergency_untreatedCount,coalesce(processed.count,0) emergency_processedCount, orders.discover_time from  
+                (select district_county,count(*) count, any_value(discover_time) as discover_time from order_list where risk_level = '紧急' and city = '{req.city}' group by district_county) orders 
+                left join (select district_county,count(*) count from order_list where is_top_end = 0 and risk_level = '紧急' and city = '{req.city}' group by district_county) untreated 
+                on orders.district_county = untreated.district_county 
+                left join (select district_county,count(*) count from order_list where is_top_end = 1 and risk_level = '紧急' and city = '{req.city}' group by district_county) processed 
+                on orders.district_county = processed.district_county;
+            """
+            generalData = session.execute(text(generalCmd))
+            emergencyData = session.execute(text(emergencyCmd))
+            if generalData.rowcount > emergencyData.rowcount:
+                join = " LEFT JOIN "
+            elif generalData.rowcount < emergencyData.rowcount:
+                join = " RIGHT JOIN "
+            cmd = f"""select IFNULL(general.district_county, emergency.district_county) district_county,
+                coalesce(general.general_count,0) general_count,coalesce(general.general_untreatedCount,0) general_untreatedCount,coalesce(general.general_processedCount,0) general_processedCount, 
+                coalesce(emergency.emergency_count,0) emergency_count,coalesce(emergency.emergency_untreatedCount,0) emergency_untreatedCount,coalesce(emergency.emergency_processedCount,0) emergency_processedCount 
+                from (select orders.district_county,orders.count general_count,coalesce(untreated.count,0) general_untreatedCount,coalesce(processed.count,0) general_processedCount, orders.discover_time from  
+                (select district_county,count(*) count, any_value(discover_time) as discover_time from order_list where risk_level = '一般' and city = '{req.city}' group by district_county) orders 
+                left join (select district_county,count(*) count from order_list where is_top_end = 0 and risk_level = '一般' and city = '{req.city}' group by district_county) untreated 
+                on orders.district_county = untreated.district_county 
+                left join (select district_county,count(*) count from order_list where is_top_end = 1 and risk_level = '一般' and city = '{req.city}' group by district_county) processed 
+                on orders.district_county = processed.district_county) general 
+                """ + join + f""" (select orders.district_county,orders.count emergency_count,coalesce(untreated.count,0) emergency_untreatedCount,coalesce(processed.count,0) emergency_processedCount, orders.discover_time from  
+                (select district_county,count(*) count, any_value(discover_time) as discover_time from order_list where risk_level = '紧急' and city = '{req.city}' group by district_county) orders 
+                left join (select district_county,count(*) count from order_list where is_top_end = 0 and risk_level = '紧急' and city = '{req.city}' group by district_county) untreated 
+                on orders.district_county = untreated.district_county 
+                left join (select district_county,count(*) count from order_list where is_top_end = 1 and risk_level = '紧急' and city = '{req.city}' group by district_county) processed 
+                on orders.district_county = processed.district_county) emergency 
+                on general.district_county = emergency.district_county
+            """
+            if (req.startTime != "" and req.startTime != None):
+                cmd += f" and (general.discover_time between '{req.startTime}' and '{req.endTime}') and (emergency.discover_time between '{req.startTime}' and '{req.endTime}');"
+            else:
+                cmd += ";"
+            return session.execute(text(cmd))
+
+
+def get_all_order_list():
+    return OrderList.all()
+
+
+def get_order_list_filter():
+    return OrderList.all_for_filter()
+
+
+def get_order_list_filter_later_part():
+    return OrderList.all_for_filter_later_part()
+
+
+def get_filter_citys(citys):
+    return OrderList.get_city_filter(citys)
 
 
 if __name__ == "__main__":

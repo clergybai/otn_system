@@ -1,0 +1,144 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.main {
+  width: 100%;
+  height: 100%;
+  padding-right: 20px;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+  -ms-flex-wrap: nowrap !important;
+      flex-wrap: nowrap !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.main div.logSearch {
+  padding: 10px 0px 10px 10px;
+  width: 100%;
+  height: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.main div.logSearch div.logSearchTemplate {
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  border-radius: 10px;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+div.main div.logSearch div.logSearchTemplate .el-form {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.main div.logSearch div.logSearchTemplate .el-form .btnSearch {
+  padding: 18px 35px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: var(--theme-color);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.main div.logSearch div.logSearchTemplate .el-form .btnSearch:hover, div.main div.logSearch div.logSearchTemplate .el-form .btnSearch:focus, div.main div.logSearch div.logSearchTemplate .el-form .btnSearch:active {
+  color: #fff;
+  background-color: var(--theme-color);
+}
+
+div.main div.body {
+  padding: 10px 0px 10px 10px;
+  width: 100%;
+  height: calc(100% - 100px);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.main div.body .content {
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: var(--white);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.main div.body .content .logTableData {
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow-anchor: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+div.main div.body .content .logTableData::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.el-form-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  margin: 0;
+}
+
+.el-form-item:not(.el-form-item:nth-of-type(1)) {
+  margin-left: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/*# sourceMappingURL=index.css.map */

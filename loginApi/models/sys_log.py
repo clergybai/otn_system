@@ -1,6 +1,6 @@
 import sqlalchemy as sa
 from datetime import datetime
-from ..database import EmptyModel, lo_session
+from common.database import EmptyModel, Lo_Session
 
 
 class SysLog(EmptyModel):
@@ -32,18 +32,24 @@ class SysLog(EmptyModel):
 
     @classmethod
     def add_log(cls, log):
-        lo_session.add(log)
-        lo_session.commit()
-        return log.id
+        with Lo_Session() as session:
+            try:
+                session.add(log)
+                session.commit()
+            except Exception as e:
+                session.rollback(e)
+                raise e
+            return log.id
 
     @classmethod
     def get_log(cls, **kwargs):
-        query = lo_session.query(cls)
-        for key, val in kwargs.items():
-            if key == "startTime":
-                query = query.filter(cls.op_time >= val)
-            if key == "endTime":
-                query = query.filter(cls.op_time < val)
-            if key == "op_user":
-                query = query.filter(cls.op_user.like('%'+val+'%'))
-        return query.order_by(sa.desc(cls.op_time)).all()
+        with Lo_Session() as session:
+            query = session.query(cls)
+            for key, val in kwargs.items():
+                if key == "startTime":
+                    query = query.filter(cls.op_time >= val)
+                if key == "endTime":
+                    query = query.filter(cls.op_time < val)
+                if key == "op_user":
+                    query = query.filter(cls.op_user.like('%'+val+'%'))
+            return query.order_by(sa.desc(cls.op_time)).all()

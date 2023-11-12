@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    .header {
+        width: 100%;
+        height: 60px;
+        overflow: hidden;
+        user-select: none;
+        .logo {
+            width: 150px;
+            height: 100%;
+            background: url("@/assets/unicom_logo_mini.png") no-repeat center;
+            background-size: 60% 100%;
+            object-fit: cover;
+        }
+        .header_canvas {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to left, rgba(194, 84, 84, 0.5), rgb(255, 48, 48, 1));
+            .el-col {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                h2 {
+                    color: #fff;
+                }
+                &:last-of-type {
+                    position: absolute;
+                    right: 20px;
+                }
+            }
+        }
+    }
+
+    .content {
+        width: 100%;
+        max-width: 2066px;
+        margin: 0 auto;
+        height: calc(100% - 60px);
+        background-color: #f2f5fa;
+        box-sizing: border-box;
+    }
+}
+
+.UsersSetting {
+    // width: 100px;
+    width: 100%;
+    height: 50px;
+    display: inline-block;
+    // overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    span.UserName {
+        padding: 4px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 15px;
+        color: var(--background-color);
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        span {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+    .el-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+}
+
+.cancel,
+.cancel:hover,
+.cancel:active,
+.cancel:focus {
+    padding: 0 20px 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-color);
+    background-color: var(--white);
+    border: 1px solid var(--theme-color);
+    outline: none;
+}
+
+.confirm,
+.confirm:hover,
+.confirm:active,
+.confirm:focus {
+    padding: 0 20px 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--theme-color);
+    border: 1px solid transparent;
+    outline: none;
+}

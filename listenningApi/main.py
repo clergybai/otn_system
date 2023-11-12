@@ -9,8 +9,9 @@ app = FastAPI(
     version=api_const.VERSION
 )
 
-PREFIX = "/listenningApi"
-app.include_router(pg_listening.router, prefix=PREFIX)
+# PREFIX = "/listenningApi"
+# app.include_router(pg_listening.router, prefix=PREFIX)
+app.include_router(pg_listening.router)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 import sqlalchemy as sa
 from datetime import datetime
-from ..database import EmptyModel, lo_session
+from common.database import EmptyModel, Lo_Session
 
 
 class UserPerms(EmptyModel):
@@ -54,21 +54,33 @@ class UserPerms(EmptyModel):
 
     @classmethod
     def get_by(cls, **filters):
-        return lo_session.query(cls).filter_by(**filters).one_or_none()
+        with Lo_Session() as session:
+            return session.query(cls).filter_by(**filters).one_or_none()
 
     @classmethod
     def get_all_user_perms(cls):
-        return lo_session.query(cls).order_by(cls.user_name).all()
+        with Lo_Session() as session:
+            return session.query(cls).order_by(cls.user_name).all()
 
     @classmethod
     def add_new_user_perm(cls, **kwargs):
         user_perm = cls(**kwargs)
-        lo_session.add(user_perm)
-        lo_session.commit()
-        return user_perm.to_dict()
+        with Lo_Session() as session:
+            try:
+                session.add(user_perm)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e
+            return user_perm.to_dict()
 
     @classmethod
     def update(cls, user_name, **kwargs) -> bool:
-        updated = lo_session.query(cls).filter_by(user_name=user_name).update(kwargs)
-        lo_session.commit()
-        return updated > 0
+        with Lo_Session() as session:
+            try:
+                updated = session.query(cls).filter_by(user_name=user_name).update(kwargs)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e
+            return updated > 0

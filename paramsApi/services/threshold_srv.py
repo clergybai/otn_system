@@ -46,7 +46,7 @@ def upsert(**kwargs):
     if rule:
         return InputThreshold.update(rule_name=rule_name, kwargs=kwargs)
     else:
-        return InputThreshold.add_threshold(kwargs)
+        return InputThreshold.add_threshold(**kwargs)
 
 
 def delete_threshold(rule_name):

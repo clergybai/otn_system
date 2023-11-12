@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 import uuid
 from datetime import datetime
-from common.database import EmptyModel, tr_session
+from common.database import EmptyModel, Tr_Session
 
 
 class CalcNeAdj(EmptyModel):
@@ -46,7 +46,8 @@ class CalcNeAdj(EmptyModel):
 
     @classmethod
     def get(cls, **kwargs):
-        return tr_session.query(cls).filter_by(**kwargs).all()
+        with Tr_Session() as session:
+            return session.query(cls).filter_by(**kwargs).all()
 
     @classmethod
     def bulk_add(cls, kwargs_list):
@@ -55,5 +56,10 @@ class CalcNeAdj(EmptyModel):
             input_top_data = cls(**kwargs)
             calc_ne_adj_list.append(input_top_data)
         if len(calc_ne_adj_list) > 0:
-            tr_session.add_all(calc_ne_adj_list)
-            tr_session.commit()
+            with Tr_Session() as session:
+                try:
+                    session.add_all(calc_ne_adj_list)
+                    session.commit()
+                except Exception as e:
+                    session.rollback()
+                    raise e

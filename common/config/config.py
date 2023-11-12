@@ -23,6 +23,10 @@ class Settings(BaseSettings):
 
     wo_operation_api: str
 
+    path_import_in_optical_amplifier_type: str
+    path_import_in_board_config_data: str
+    path_import_in_voa_config: str
+
     env: str
 
     class Config:

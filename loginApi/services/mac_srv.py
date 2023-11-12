@@ -23,7 +23,7 @@ def insert_addr_key(addr, key):
 
 def verify_user_identify(addr, user_name, pw_word):
     mac = Mac.find_mac_by(addr=addr, is_history=0)
-    private_key_java_str = mac['key']
+    private_key_java_str = mac.key
     # 难道private用于将通过public加密的pw_word还原成
     user = User.find_user_by(user_name=user_name)
     if not user:

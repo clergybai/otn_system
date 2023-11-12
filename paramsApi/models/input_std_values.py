@@ -3,7 +3,7 @@ from sqlalchemy import func
 from sqlalchemy.inspection import inspect
 import uuid
 from datetime import datetime
-from common.database import EmptyModel, tr_session
+from common.database import EmptyModel, Tr_Session
 
 
 class InputStdValues(EmptyModel):
@@ -29,25 +29,33 @@ class InputStdValues(EmptyModel):
 
     @classmethod
     def get_input_std_value(cls, **kwargs):
-        query = tr_session.query(cls).filter_by(**kwargs)
-        return query.order_by(sa.desc(cls.timestamp)).first()
+        with Tr_Session() as session:
+            query = session.query(cls).filter_by(**kwargs)
+            return query.order_by(sa.desc(cls.timestamp)).first()
 
     @classmethod
     def get_count(cls, **filters) -> int:
-        query = tr_session.query(func.count(inspect(cls).primary_key[0]))
-        for key, val in filters.items():
-            if isinstance(val, list):
-                query = query.filter(getattr(cls, key).in_(val))
-            else:
-                query = query.filter_by(**{key: val})
-        count = query.scalar()
-        return count
+        with Tr_Session() as session:
+            query = session.query(func.count(inspect(cls).primary_key[0]))
+            for key, val in filters.items():
+                if isinstance(val, list):
+                    query = query.filter(getattr(cls, key).in_(val))
+                else:
+                    query = query.filter_by(**{key: val})
+            count = query.scalar()
+            return count
 
     @classmethod
     def get_input_std_values(cls, **kwargs):
-        return tr_session.query(cls).filter_by(**kwargs).all()
+        with Tr_Session() as session:
+            return session.query(cls).filter_by(**kwargs).all()
 
     @classmethod
     def bulk_update(cls, update_mappings):
-        tr_session.bulk_update_mappings(cls, update_mappings)
-        tr_session.commit()
+        with Tr_Session() as session:
+            try:
+                session.bulk_update_mappings(cls, update_mappings)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e

@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from .. import schemas
-from ..services.msl_srv import (get_msl_by_filter, update, update_wave)
+from ..services.msl_srv import (get_msl_by_filter, update,
+                                update_wave, get_msl_filter)
 from listenningApi.services.computing_srv import get_computing_state
 
 
@@ -35,4 +36,13 @@ def edit_msl(req: schemas.MslEditRequest):
     update_wave(req)
     return schemas.GetBoardResponse(
         data=None
+    )
+
+
+@router.get("/getFilter",
+            response_model=schemas.FilterResponse,
+            summary="获取msl filter")
+def get_filter():
+    return schemas.FilterResponse(
+        data=get_msl_filter()
     )

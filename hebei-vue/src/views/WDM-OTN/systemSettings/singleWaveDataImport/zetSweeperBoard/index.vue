@@ -1,0 +1,555 @@
+<!--
+ * @Author: '15623702696' 2458186212@qq.com
+ * @Date: 2022-05-18 16:48:28
+ * @LastEditors: '15623702696' 2458186212@qq.com
+ * @LastEditTime: 2022-09-09 14:52:30
+ * @FilePath: \hebei--vue\src\views\WDM-OTN\systemSettings\dataImport\adjustableDimLiveNetConfiguration\index.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<template>
+  <!-- 中兴扫波板性能数据 -->
+  <div class="main">
+    <div class="operatingHead">
+      <div class="operatingTool">
+        <!-- <el-button
+          class="button"
+          @click="dialogVisibleParameter = true"
+          v-if="isAuthen"
+          >新增</el-button
+        >
+        <el-button
+          class="button"
+          @click="recountParameter"
+          :disabled="reComputed.disabled"
+          v-if="restartComputed"
+          >{{ reComputed.text }}</el-button
+        > -->
+        <el-button class="button" @click="centerDialogVisible = true"
+          >参数上传</el-button
+        >
+        <samp>&emsp;&emsp;&emsp;</samp>
+        <!-- <el-link
+          target="_blank"
+          href="ftp://user2:ftp123.@192.168.1.95/dl/%E5%85%89%E6%94%BE%E6%9D%BF%E5%8D%A1%E6%A0%87%E5%87%86%E5%8F%82%E6%95%B0%E5%AF%BC%E5%85%A5%E6%A8%A1%E6%9D%BF.xlsx"
+          :underline="false"
+          style="margin-left: 15px"
+        >
+          <el-button class="button">模板下载</el-button>
+        </el-link> -->
+        <el-button class="button" @click="downloadFile">模板下载</el-button>
+      </div>
+    </div>
+    <div class="content">
+      <el-table
+        :data="tableData.slice()"
+        stripe
+        :row-style="{ height: '0' }"
+        :header-cell-style="{
+          'text-align': 'center',
+          background: '#F3F5FA',
+          padding: '10px 0',
+        }"
+        :cell-style="{ 'text-align': 'center', padding: '10px' }"
+        @filter-change="handleFilterChange"
+        height="100%"
+      >
+        <el-table-column
+          align="center"
+          prop="sub_name"
+          label="网元名称"
+          column-key="sub_name"
+        ></el-table-column>
+        <el-table-column
+          align="center"
+          label="板卡型号"
+          prop="brd_name"
+        />
+        <el-table-column
+          align="center"
+          label="子架"
+          prop="shelf_id"
+        />
+        <el-table-column
+          align="center"
+          label="槽位"
+          prop="slot_id"
+        />
+        <el-table-column
+          align="center"
+          label="端口"
+          prop="port_id"
+        />
+        <el-table-column
+          align="center"
+          label="波道号"
+          prop="path_id"
+        />
+        <el-table-column
+          align="center"
+          label="方向"
+          prop="direction"
+        />
+        <el-table-column
+          align="center"
+          label="输入光功率"
+          prop="och_power"
+        />
+      </el-table>
+    </div>
+    <!-- <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-size="pageSize"
+      layout="sizes, prev, pager, next, jumper"
+      class="paging"
+      :page-count="pageCount"
+    >
+    </el-pagination> -->
+  </div>
+
+  <el-dialog v-model="centerDialogVisible" title="参数上传" width="30%" center>
+    <el-upload
+      class="upload-demo"
+      drag
+      action="/paramsApi/pm_mca/upload_file"
+      :data="{ brand: '中兴'}"
+      multiple
+      :on-success="uploadSuccess"
+      :on-error="uploadError"
+    >
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+      <div class="el-upload__tip" slot="tip">只能上传模板文件对应参数</div>
+    </el-upload>
+  </el-dialog>
+
+  <el-dialog v-model="dialogVisibleParameter" title="新建" width="30%" center>
+    <el-form :model="form" label-width="200px">
+      <el-form-item label=""> </el-form-item>
+      <el-form-item label="板卡类型：">
+        <div class="demo-input-size">
+          <el-input
+            v-model="form.board_model"
+            class="w-50 m-2"
+            placeholder="请输入"
+          />
+        </div>
+      </el-form-item>
+      <el-form-item label="标准增益最小值">
+        <div class="demo-input-size">
+          <el-input
+            v-model="form.standard_gain_min"
+            class="w-50 m-2"
+            placeholder="请输入"
+          />
+        </div>
+      </el-form-item>
+      <el-form-item label="标准增益最大值">
+        <div class="demo-input-size">
+          <el-input
+            v-model="form.standard_gain_max"
+            class="w-50 m-2"
+            placeholder="请输入"
+          />
+        </div>
+      </el-form-item>
+      <el-form-item label="40波系统-单波输出标准值">
+        <div class="demo-input-size">
+          <el-input
+            v-model="form.standard_single_40_wave_output"
+            class="w-50 m-2"
+            placeholder="请输入"
+          />
+        </div>
+      </el-form-item>
+      <el-form-item label="80波系统-单波输出标准值">
+        <div class="demo-input-size">
+          <el-input
+            v-model="form.standard_single_80_wave_output"
+            class="w-50 m-2"
+            placeholder="请输入"
+          />
+        </div>
+      </el-form-item>
+      <el-form-item label="96波系统-单波输出标准值">
+        <div class="demo-input-size">
+          <el-input
+            v-model="form.standard_single_96_wave_output"
+            class="w-50 m-2"
+            placeholder="请输入"
+          />
+        </div>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisibleParameter = false">取消</el-button>
+        <el-button type="primary" @click="onSubmit">保存</el-button>
+      </span>
+    </template>
+  </el-dialog>
+</template>
+
+
+
+
+
+<script>
+import { ref } from "vue";
+import { ElMessageBox } from "element-plus";
+import { getIs_Authen } from "@/config/UserInfomation";
+import { getCookie } from "@/config/Cookies";
+import axios from 'axios';
+import { NowDate } from "@/config/formatTime";
+import {
+  getBoardStandardFilter,
+  getComputedState,
+  startComputed,
+  updateBoardStandardCalculate,
+  addBoardStandard,
+  updateBoardStandard,
+  getBoardStandard,
+  setLog,
+  logModuleMenu,
+  operationMenu,
+  getPmMca,
+} from "@/api/WDM-OTN/http";
+
+export default {
+  data() {
+    return {
+      reComputed: {
+        text: "重新计算",
+        disabled: false,
+      },
+      restartComputed: false,
+      tableData: ref(""),
+      currentPage: 1, // 每页多少条
+      pageSize: 15, //每页显示个数
+      pageTotal: ref(""),
+      dataTotal: ref(""),
+      labelSave: ref(""),
+      centerDialogVisible: false,
+      dialogVisibleParameter: false,
+      form: {
+        board_model: "",
+        standard_gain_min: "",
+        standard_gain_max: "",
+        standard_single_40_wave_output: "",
+        standard_single_80_wave_output: "",
+        standard_single_96_wave_output: "",
+      },
+      // all_sub_name_array: [],
+      all_board_model_array: [],
+
+      // filters_sub_name_tag: {},
+      filters_board_model_tag: {},
+      isAuthen: false,
+    };
+  },
+  methods: {
+    refreshTable(data) {
+      this.tableData = data
+    },
+    setFiltersArray(data) {
+      new Promise(() => {
+        data.forEach((item) => {
+          if (!this.all_board_model_array.includes(item.board_model)) {
+            this.all_board_model_array.push(item.board_model);
+          }
+        });
+      });
+    },
+    getFilters(array) {
+      let result = [];
+      array.forEach((item) => {
+        result.push({ text: item, value: item });
+      });
+      return result.slice();
+    },
+    init() {
+      let data0 = {
+        brand: '中兴',
+      };
+      getPmMca(data0).then((res) => {
+        if (res.code == 200) {
+          this.refreshTable(res.data);
+        }
+      });
+    },
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.changePage();
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
+      this.changePage();
+    },
+    prevPage() {
+      if (this.currentPage == 1) {
+        return false;
+      } else {
+        this.currentPage--;
+        this.changePage();
+      }
+    },
+    nextPage() {
+      if (this.currentPage == this.totalPage) {
+        return false;
+      } else {
+        this.currentPage++;
+        this.changePage();
+      }
+    },
+    changePage() {
+      let obj = {
+        page_index_begin: this.currentPage,
+        page_size: this.pageSize,
+
+        // filter:[this.filters_sub_name_tag,this.filters_board_model_tag]
+        filter: [this.filters_board_model_tag],
+      };
+      getBoardStandard(obj).then((res) => {
+        if (res.code == 200) {
+          this.refreshTable(res.data);
+        }
+      });
+    },
+    editRow(data) {
+      updateBoardStandard(data).then((res) => {
+        if (res.code == 200) {
+          this.refreshTable(res.data);
+        }
+      });
+    },
+    open(data) {
+      this.$confirm("参数值已经修改，是否保存修改？", "确认信息", {
+        distinguishCancelAndClose: true,
+        confirmButtonText: "保存",
+        cancelButtonText: "取消",
+      })
+        .then(() => {
+          this.editRow(data);
+          this.$message({
+            type: "info",
+            message: "保存修改",
+          });
+        })
+        .catch((action) => {
+          this.$message({
+            type: "info",
+            message: action === "cancel" ? "放弃保存" : "停留在当前页面",
+          });
+        });
+    },
+    onSubmit() {
+      addBoardStandard(this.form).then((res) => {
+        if (res.code == 200) {
+          this.refreshTable(res.data);
+        }
+      });
+      const user = getCookie("usn");
+      setLog({
+        op_module: logModuleMenu.SPOTODB,
+        op_user: user,
+        op_behavior: user + operationMenu.add,
+        op_time: NowDate(),
+      });
+      this.dialogVisibleParameter = false;
+    },
+    recountParameter() {
+      let data1 = {
+        tableName: "光放办卡标准参数",
+      };
+      updateBoardStandardCalculate(data1).then((res) => {
+        if (res.code == 200) {
+          this.refreshTable(res.data);
+        }
+      });
+    },
+    handleFilterChange(filterObj) {
+      // if(filterObj.sub_name != null){
+      //   this.filters_sub_name_tag = {
+      //     name:"sub_name",
+      //     values:filterObj.sub_name
+      //   }
+      // }
+      if (filterObj.board_model != null) {
+        this.filters_board_model_tag = {
+          name: "board_model",
+          values: filterObj.board_model,
+        };
+      }
+      this.changePage();
+    },
+    recountParameter() {
+      let _this = this;
+      let data1 = {
+        tableName: "复用段波道数配置",
+      };
+      ElMessageBox.confirm("确定开始计算吗?", "重新计算", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+        showClose: false,
+        // draggable: true,
+        lockScroll: true,
+        closeOnClickModal: false,
+      }).then(() => {
+        _this.reComputed.text = "计算中...";
+        _this.reComputed.disabled = true;
+        startComputed().then((res) => {
+          _this.getComputedState();
+        });
+      });
+    },
+    getComputedState() {
+      let _this = this;
+      getComputedState().then((res) => {
+        if (res.code == 200) {
+          const data = res.data;
+          if (data == 1) {
+            _this.reComputed.text = "计算中...";
+            _this.reComputed.disabled = true;
+          } else {
+            _this.reComputed.text = "重新计算";
+            _this.reComputed.disabled = false;
+          }
+        }
+      });
+    },
+    getFilter() {
+      let _this = this;
+      getBoardStandardFilter().then((res) => {
+        if (res.code == 200) {
+          const result = res;
+          _this.setFiltersArray(result.data);
+        }
+      });
+    },
+    uploadSuccess() {
+      this.$message({
+          showClose: true,
+          message: '文件上传成功',
+          type: 'success'
+        });
+    },
+    uploadError() {
+      this.$message({
+          showClose: true,
+          message: '文件上传失败！',
+          type: 'error'
+        });
+    },
+    getAuthen() {
+      this.isAuthen = getIs_Authen().can_add_standrad_param;
+    },
+    getRestartComputed() {
+      const is_authen = getIs_Authen();
+      this.restartComputed =
+        (is_authen.can_add_standrad_param &&
+          is_authen.can_threshold_setting &&
+          is_authen.can_set_channel_num) == true
+          ? true
+          : false;
+    },
+    downloadFile() {
+      const downloadUrl = '/paramsApi/pm_mca/download?file_name=中兴扫波板性能数据模板.xlsx'
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.click();
+    },
+  }, //methods
+  mounted() {
+    this.getAuthen();
+    this.getRestartComputed();
+    this.init();
+    this.getComputedState();
+  },
+  created() {
+    this.getFilter();
+  },
+  // editRow(index, data) {
+  // },
+  deleteRow(index, data) {},
+};
+</script>
+
+<style scoped>
+* {
+  box-sizing: border-box;
+}
+.main {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.main .operatingHead {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+.operatingHead .operatingTool {
+  padding: 0 20px;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.operatingTool .button {
+  margin-right: 20px;
+  height: 30px;
+  padding: 2px 16px;
+  font-family: SimHei;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #a5b1f8;
+  font-size: 15px;
+  color: #788af5;
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.operatingTool button.button:not(.is-disabled):active,
+.operatingTool button.button:not(.is-disabled):focus,
+.operatingTool button.button:not(.is-disabled):hover {
+  background-color: #4c64f2;
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.operatingTool .button:last-of-type {
+  margin-right: 0;
+}
+
+.main .content {
+  width: 100%;
+  height: calc(100% - 60px - 60px);
+  overflow-anchor: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main .content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+</style>

@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 import uuid
 from datetime import datetime
-from common.database import EmptyModel, tr_session
+from common.database import EmptyModel, Tr_Session
 
 
 class InputVoaConfig(EmptyModel):
@@ -31,29 +31,37 @@ class InputVoaConfig(EmptyModel):
 
     @classmethod
     def get_input_voa_configs(cls, **kwargs):
-        return tr_session.query(cls).filter_by(**kwargs).all()
+        with Tr_Session() as session:
+            return session.query(cls).filter_by(**kwargs).all()
+
+    @classmethod
+    def get_distinct_voa_configs_filter(cls, **kwargs):
+        with Tr_Session() as session:
+            return session.query(cls.sub_name).distinct(cls.sub_name).all()
 
     @classmethod
     def get_voa_configs_by_page_size(cls, history_val, page_idx, page_size, filters):
         idx = 0 if (page_idx - 1) < 0 else page_idx - 1
         start = idx * page_size
-        if filters is None:
-            return tr_session.query(cls).filter(cls.is_history > history_val).offset(start).limit(page_size).all()
+        with Tr_Session() as session:
+            if filters is None:
+                return session.query(cls).filter(cls.is_history > history_val).offset(start).limit(page_size).all()
 
-        query = cls.generate_query(history_val, filters)
-        return query.offset(start).limit(page_size).all()
+            query = cls.generate_query(session, history_val, filters)
+            return query.offset(start).limit(page_size).all()
 
     @classmethod
     def get_voa_configs_total(cls, history_val, filters):
-        if filters is None:
-            return tr_session.query(cls).filter(cls.is_history > history_val).count()
-        else:
-            query = cls.generate_query(history_val, filters)
+        with Tr_Session() as session:
+            if filters is None:
+                return session.query(cls).filter(cls.is_history > history_val).count()
+            else:
+                query = cls.generate_query(session, history_val, filters)
             return query.count()
 
     @classmethod
-    def generate_query(cls, history_val, filters):
-        query = tr_session.query(cls).filter(cls.is_history > history_val)
+    def generate_query(cls, session, history_val, filters):
+        query = session.query(cls).filter(cls.is_history > history_val)
         for filter in filters:
             if len(filter.items()):
                 field_name = filter['name']
@@ -71,9 +79,19 @@ class InputVoaConfig(EmptyModel):
             input_top_data = cls(**kwargs)
             input_voa_config_list.append(input_top_data)
         if len(input_voa_config_list) > 0:
-            tr_session.add_all(input_voa_config_list)
-            tr_session.commit()
+            with Tr_Session() as session:
+                try:
+                    session.add_all(input_voa_config_list)
+                    session.commit()
+                except Exception as e:
+                    session.rollback()
+                    raise e
 
     @classmethod
     def update(cls, filters, **kwargs):
-        return tr_session.query(cls).filter_by(**filters).update(**kwargs)
+        with Tr_Session() as session:
+            try:
+                return session.query(cls).filter_by(**filters).update(**kwargs)
+            except Exception as e:
+                session.rollback()
+                raise e

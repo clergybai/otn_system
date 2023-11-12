@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+}
+.content {
+    padding: 10px 20px 10px 20px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-anchor: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+    .header {
+        padding: 0px 0px 10px 0px;
+        width: 100%;
+        height: 90px;
+        box-sizing: border-box;
+        .searchTemplate {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-anchor: none;
+            overflow-y: hidden;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            &::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
+            .el-form {
+                padding: 10px 20px;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                .el-form-item {
+                    display: flex;
+                    align-items: center;
+                    margin: 0;
+                }
+                .el-form-item:not(.el-form-item:nth-of-type(1)) {
+                    margin-left: 50px;
+                }
+                .btnSearch {
+                    padding: 20px 40px;
+                    border: none;
+                    outline: none;
+                    background-color: var(--theme-color);
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .btnSearch:hover,
+                .btnSearch:focus {
+                    border: none;
+                    outline: none;
+                    background-color: var(--theme-color);
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.content > .body {
+    width: 100%;
+    min-height: calc(100% - 90px);
+    .hiddenCardOne {
+        padding: 10px 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        .untreatedHiddenDanger,
+        .hiddenContent,
+        .networkLevelNumberHidden {
+            padding: 15px 20px;
+            width: 32.5%;
+            min-width: 400px;
+            flex: 1;
+            height: 100%;
+            border-radius: 10px;
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            #untreatedHiddenDanger,
+            #hiddenContent,
+            #networkLevelNumberHidden {
+                width: 100%;
+                min-height: 300px;
+            }
+            span {
+                width: 100%;
+                height: 30px;
+                color: var(--black);
+                font-size: 15px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                user-select: none;
+            }
+        }
+    }
+    .hiddenCardTwo {
+        padding: 10px 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        .untreatedNumberHiddenCity,
+        .annualRisk {
+            padding: 15px 20px;
+            // width: 50%;
+            min-width: 400px;
+            flex: 1;
+            height: 100%;
+            border-radius: 10px;
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            #untreatedNumberHiddenCity,
+            #annualRisk {
+                width: 100%;
+                min-height: 430px;
+            }
+            span {
+                width: 100%;
+                height: 30px;
+                color: var(--black);
+                font-size: 15px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                user-select: none;
+            }
+        }
+    }
+    .hiddenCardThree,
+    .hiddenCardFour {
+        padding: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
+        .cityHiddenStatisticalList {
+            padding: 15px 20px;
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border-radius: 10px;
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            box-sizing: border-box;
+            span {
+                width: 100%;
+                height: 30px;
+                color: var(--black);
+                font-size: 15px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                user-select: none;
+            }
+            .cityHiddenTableData {
+                padding: 10px 0;
+                width: 100%;
+            }
+        }
+    }
+}

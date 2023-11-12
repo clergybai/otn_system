@@ -2,7 +2,7 @@ import sqlalchemy as sa
 from sqlalchemy import func
 from sqlalchemy.inspection import inspect
 from datetime import datetime
-from common.database import EmptyModel, tr_session
+from common.database import EmptyModel, Tr_Session
 import uuid
 
 
@@ -105,49 +105,55 @@ class InputThreshold(EmptyModel):
 
     @classmethod
     def get_input_threshold(cls, **kwargs):
-        query = tr_session.query(cls).filter_by(**kwargs)
-        return query.first()
+        with Tr_Session() as session:
+            query = session.query(cls).filter_by(**kwargs)
+            return query.first()
 
     @classmethod
     def get_threshold_total(cls, history_val, filters):
-        if filters is None:
-            return tr_session.query(cls).filter(cls.is_history == history_val).count()
-        else:
-            query = cls.generate_query(history_val, filters)
-            return query.count()
+        with Tr_Session() as session:
+            if filters is None:
+                return session.query(cls).filter(cls.is_history == history_val).count()
+            else:
+                query = cls.generate_query(session, history_val, filters)
+                return query.count()
 
     @classmethod
     def get_threshold_by_page_size(cls, history_val, page_idx, page_size, filters):
         idx = 0 if (page_idx - 1) < 0 else page_idx - 1
         start = idx * page_size
-        if filters is None:
-            return tr_session.query(cls).filter(cls.is_history == history_val).offset(start).limit(page_size).all()
+        with Tr_Session() as session:
+            if filters is None:
+                return session.query(cls).filter(cls.is_history == history_val).offset(start).limit(page_size).all()
 
-        query = cls.generate_query(history_val, filters)
-        return query.offset(start).limit(page_size).all()
+            query = cls.generate_query(session, history_val, filters)
+            return query.offset(start).limit(page_size).all()
 
     @classmethod
     def get_input_thresholds(cls, **kwargs):
-        return tr_session.query(cls).filter_by(**kwargs).all()
+        with Tr_Session() as session:
+            return session.query(cls).filter_by(**kwargs).all()
 
     @classmethod
     def get_specific_threshold(cls, city, rule_name, is_history):
-        query = tr_session.query(cls).filter(cls.city == city)
-        query = query.filter(cls.rule_name != rule_name)
-        query = query.filter(cls.is_history == is_history)
-        return query.first()
+        with Tr_Session() as session:
+            query = session.query(cls).filter(cls.city == city)
+            query = query.filter(cls.rule_name != rule_name)
+            query = query.filter(cls.is_history == is_history)
+            return query.first()
 
     @classmethod
     def update_specific_threshold(cls, city, rule_name, is_history):
-        query = tr_session.query(cls).filter(cls.city == city)
-        query = query.filter(cls.rule_name != rule_name)
-        query = query.filter(cls.is_history == is_history)
-        rows = query.update({cls.is_used: 0})
-        return rows > 0
+        with Tr_Session() as session:
+            query = session.query(cls).filter(cls.city == city)
+            query = query.filter(cls.rule_name != rule_name)
+            query = query.filter(cls.is_history == is_history)
+            rows = query.update({cls.is_used: 0})
+            return rows > 0
 
     @classmethod
-    def generate_query(cls, history_val, filters):
-        query = tr_session.query(cls).filter(cls.is_history == history_val)
+    def generate_query(cls, session, history_val, filters):
+        query = session.query(cls).filter(cls.is_history == history_val)
         for filter in filters:
             if len(filter.items()):
                 field_name = filter['name']
@@ -160,31 +166,47 @@ class InputThreshold(EmptyModel):
 
     @classmethod
     def add_threshold(cls, **kwargs):
-        threshold = cls(kwargs)
-        tr_session.add(threshold)
-        tr_session.commit()
+        threshold = cls(**kwargs)
+        with Tr_Session() as session:
+            try:
+                session.add(threshold)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e
         return threshold
 
     @classmethod
     def update(cls, rule_name, **kwargs) -> bool:
-        query = tr_session.query(cls).filter(cls.rule_name == rule_name)
-        query = query.filter(cls.is_history == 0)
-        updated = query.update(kwargs)
-        tr_session.commit()
-        return updated > 0
+        with Tr_Session() as session:
+            try:
+                query = session.query(cls).filter(cls.rule_name == rule_name)
+                query = query.filter(cls.is_history == 0)
+                updated = query.update(kwargs)
+                session.commit()
+                return updated > 0
+            except Exception as e:
+                session.rollback()
+                raise e
 
     @classmethod
     def get_count(cls, **filters) -> int:
-        query = tr_session.query(func.count(inspect(cls).primary_key[0]))
-        for key, val in filters.items():
-            if isinstance(val, list):
-                query = query.filter(getattr(cls, key).in_(val))
-            else:
-                query = query.filter_by(**{key: val})
-        count = query.scalar()
-        return count
+        with Tr_Session() as session:
+            query = session.query(func.count(inspect(cls).primary_key[0]))
+            for key, val in filters.items():
+                if isinstance(val, list):
+                    query = query.filter(getattr(cls, key).in_(val))
+                else:
+                    query = query.filter_by(**{key: val})
+            count = query.scalar()
+            return count
 
     @classmethod
     def bulk_update(cls, update_mappings):
-        tr_session.bulk_update_mappings(cls, update_mappings)
-        tr_session.commit()
+        with Tr_Session() as session:
+            try:
+                session.bulk_update_mappings(cls, update_mappings)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e

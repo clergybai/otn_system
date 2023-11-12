@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+}
+
+/* .main {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  } */
+
+.main {
+    padding: 10px 20px 10px 10px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    .content {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: var(--white);
+        box-shadow: var(--box-shadow);
+        .operatingHead {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            box-sizing: border-box;
+            .operatingTool {
+                padding: 0 20px;
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+                overflow: hidden;
+                .userSearch.el-form {
+                    padding: 10px 20px;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;
+                    .el-form-item {
+                        display: flex;
+                        align-items: center;
+                        margin: 0;
+                        &:not(&:nth-of-type(1)) {
+                            margin-left: 30px;
+                        }
+                    }
+                    .btnSearch {
+                        padding: 18px 35px;
+                        border: none;
+                        outline: none;
+                        color: #fff;
+                        background-color: var(--theme-color);
+                        &:hover,
+                        &:active,
+                        &:focus {
+                            color: #fff;
+                            background-color: var(--theme-color);
+                        }
+                    }
+                }
+                button.button {
+                    margin-right: 20px;
+                    height: 30px;
+                    padding: 2px 16px;
+                    font-family: SimHei;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid #a5b1f8;
+                    font-size: 15px;
+                    color: #788af5;
+                    background-color: transparent;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    overflow: hidden;
+                    z-index: 1;
+                    &:not(.is-disabled):active,
+                    &:not(.is-disabled):focus,
+                    &:not(.is-disabled):hover {
+                        background-color: #4c64f2;
+                        border: 1px solid transparent;
+                        color: #fff;
+                    }
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+        .body {
+            padding: 0 20px 0px 20px;
+            width: 100%;
+            height: calc(100% - 80px - 60px);
+            box-sizing: border-box;
+            .business_waveInput{
+                width: 100%;
+            }
+        }
+    }
+}

@@ -63,6 +63,18 @@ class FrontDataFiber(EmptyModel):
         return tr_session.query(cls).filter_by(**kwargs).all()
 
     @classmethod
+    def get_from_source_or_target(cls, source, target, **kwargs):
+        query = tr_session.query(cls)
+        query = query.filter(
+            sa.or_(
+                sa.and_(cls.source_ne_id == source, cls.target_ne_id == target),
+                sa.and_(cls.source_ne_id == target, cls.target_ne_id == source)
+            )
+        )
+        query = query.filter_by(**kwargs)
+        return query.first()
+
+    @classmethod
     def bulk_add(cls, kwargs_list):
         calc_ne_oas_list = []
         for kwargs in kwargs_list:

@@ -1,3 +1,4 @@
+from sqlalchemy import text
 from ..models.input_oms_business_waves import InputOmsBusinessWaves
 from ..models.calc_oms import CalcOms
 from ..models.calc_ne_adj import CalcNeAdj
@@ -26,14 +27,14 @@ def get_count_by_calc_oms_join_input_oms_business_waves():
     sql_str = """SELECT count(*) FROM `calc_oms` AS OMS LEFT JOIN `input_oms_business_waves` as INPUT 
     ON OMS.`sys_name` = INPUT.`sys_name` AND OMS.`oms_source_id` = INPUT.`a_ne_id` AND OMS.`oms_target_id` = INPUT.`z_ne_id` AND OMS.`is_history` = 0 AND OMS.`is_history` = INPUT.`is_history` 
     WHERE OMS.`timestamp` > INPUT.`timestamp`;"""
-    return InputOmsBusinessWaves.execute_raw_sql(sql_str)
+    return InputOmsBusinessWaves.execute_raw_sql(text(sql_str))
 
 
 def check_update_timestamp() -> bool:
     count = get_is_history_count_in_0_2()
     if count == 0:
         return True
-    count = get_count_by_calc_oms_join_input_oms_business_waves()
+    count = get_count_by_calc_oms_join_input_oms_business_waves()[0][0]
     return count > 0
 
 
@@ -151,3 +152,15 @@ def check_request(req) -> bool:
     if not req.business_waves or req.business_waves < 0 or req.business_waves > 100:
         return False
     return True
+
+
+def get_msl_filter():
+    data = InputOmsBusinessWaves.get_filter(is_history=[0,2])
+    rtn = []
+    for item in data:
+        rtn.append({
+            "sys_name": item.sys_name,
+            "city": item.city,
+            "net_level": item.net_level
+        })
+    return rtn

@@ -22,8 +22,12 @@ else:
     )
 
 
-PREFIX = "/loginApi"
-app.include_router(permissions.router, prefix=PREFIX)
-app.include_router(login.router, prefix=PREFIX)
-app.include_router(log.router, prefix=PREFIX)
-app.include_router(user.router, prefix=PREFIX)
+# PREFIX = "/loginApi"
+# app.include_router(permissions.router, prefix=PREFIX)
+# app.include_router(login.router, prefix=PREFIX)
+# app.include_router(log.router, prefix=PREFIX)
+# app.include_router(user.router, prefix=PREFIX)
+app.include_router(permissions.router)
+app.include_router(login.router)
+app.include_router(log.router)
+app.include_router(user.router)

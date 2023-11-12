@@ -1,7 +1,14 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, File, UploadFile
 from .. import schemas
 from ..services.filter_srv import get_all_filters, get_board_by_page, get_board_total, add_board_info
 from listenningApi.services.computing_srv import get_computing_state
+from common.config import settings
+from datetime import datetime
+import pytz
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(
     prefix='/oa_board_standard',
@@ -51,4 +58,28 @@ def add_board(req: schemas.AddOaBoardStandardRequest):
             code=status.HTTP_400_BAD_REQUEST,
             data=None,
             msg="客户端请求的语法错误，服务器无法理解。"
+        )
+
+
+@router.post("/upload_file",
+             response_model=schemas.UploadFileResponse,
+             summary="upload file...")
+async def upload_file(file: UploadFile = File(...)):
+    try:
+        res = await file.read()
+        current_time = datetime.now()
+        local_timezone = pytz.timezone('Asia/Shanghai')
+        local_time = current_time.astimezone(local_timezone)
+        temp_file = settings.path_import_in_optical_amplifier_type
+        idx = temp_file.index(".xlsx")
+        formatted_time = local_time.strftime("%Y%m%d%H%M%S")
+        save_file = f"{temp_file[0:idx]}{formatted_time}.xlsx"
+
+        with open(save_file, "wb") as f:
+            f.write(res)
+        return schemas.UploadFileResponse(data=None)
+    except Exception as e:
+        logger.exception(e)
+        return schemas.UploadFileResponse(
+            data="fail"
         )

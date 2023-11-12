@@ -24,9 +24,27 @@ class BoardItem(BaseModel):
     total: int
 
 
+class CheckTopologyItem(BaseModel):
+    myArray: List[dict]
+    page_count: int
+    page_index_begin: int
+    page_size: int
+    total: int
+
+
 class GetBoardResponse(OtnBaseResponse):
     code_type: int = status.HTTP_200_OK
-    data: BoardItem
+    data: Optional[BoardItem] = None
+
+
+class GetCheckTopologyResponse(OtnBaseResponse):
+    code_type: int = status.HTTP_200_OK
+    data: Optional[CheckTopologyItem] = None
+
+
+class UploadFileResponse(OtnBaseResponse):
+    code_type: int = status.HTTP_200_OK
+    data: Optional[str] = None
 
 
 class AddOaBoardStandardRequest(BaseModel):
@@ -47,6 +65,10 @@ class GetBoardRequest(BaseModel):
     page_index_begin: int
     page_size: int
     filter: Optional[List[dict]]
+
+
+class ExportRequest(BaseModel):
+    filter: Optional[List[dict]] = None
 
 
 class StdValueItem(BaseModel):

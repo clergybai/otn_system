@@ -1,7 +1,11 @@
 import sqlalchemy as sa
 import uuid
-from webapi.database import EmptyModel
-from webapi.database import db_trnas_session
+from common.database import EmptyModel
+from common.database import Tr_Session
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 class TopoNePosition(EmptyModel):
@@ -33,4 +37,33 @@ class TopoNePosition(EmptyModel):
 
     @classmethod
     def get_positions(cls, **kwargs):
-        return db_trnas_session.query(cls).filter_by(**kwargs).all()
+        with Tr_Session(expire_on_commit=False) as session:
+            return session.query(cls).filter_by(**kwargs).all()
+
+    @classmethod
+    def update(cls, filters, **kwargs):
+        with Tr_Session() as session:
+            try:
+                count = session.query(cls).filter_by(**filters).update(kwargs)
+                session.commit()
+                return count
+            except Exception as e:
+                logger.error(e)
+                session.rollback()
+                raise e
+
+    @classmethod
+    def bulk_add(cls, kwargs_list):
+        input_top_data_list = []
+        for kwargs in kwargs_list:
+            input_top_data = cls(**kwargs)
+            input_top_data_list.append(input_top_data)
+        if len(input_top_data_list) > 0:
+            with Tr_Session() as session:
+                try:
+                    session.add_all(input_top_data_list)
+                    session.commit()
+                except Exception as e:
+                    logger.error(e)
+                    session.rollback()
+                    raise e

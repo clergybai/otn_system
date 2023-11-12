@@ -1,8 +1,8 @@
 import sqlalchemy as sa
 import uuid
 from datetime import datetime
-from webapi.database import EmptyModel
-from webapi.database import db_trnas_session
+from common.database import EmptyModel
+from common.database import Tr_Session
 
 
 class FrontAdj(EmptyModel):
@@ -46,7 +46,8 @@ class FrontAdj(EmptyModel):
 
     @classmethod
     def get_front_adjs(cls, **kwargs):
-        return db_trnas_session.query(cls).filter_by(**kwargs).all()
+        with Tr_Session() as session:
+            return session.query(cls).filter_by(**kwargs).all()
 
     @classmethod
     def bulk_add(cls, kwargs_list):
@@ -55,5 +56,10 @@ class FrontAdj(EmptyModel):
             data = cls(**kwargs)
             data_list.append(data)
         if len(data_list) > 0:
-            db_trnas_session.add_all(data_list)
-            db_trnas_session.commit()
+            with Tr_Session() as session:
+                try:
+                    session.add_all(data_list)
+                    session.commit()
+                except Exception as e:
+                    session.rollback()
+                    raise e

@@ -1,0 +1,4014 @@
+@charset "UTF-8";
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+
+.main .navigation {
+  padding: 10px 10px 10px 20px;
+  min-width: 300px;
+  max-width: 300px;
+  /* height: 73%; */
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  /* z-index: 2001; */
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  /* transform: translateX(-100%); */
+  /* transition: transform 0.5s ease; */
+}
+
+.main .navigation .menuBtn {
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  width: 30px;
+  height: 100px;
+  color: var(--white);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: var(--theme-color);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  cursor: pointer;
+}
+
+.main .navigation .searchBox {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: var(--white);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.main .navigation .searchBox input {
+  position: absolute;
+  padding: 0 40px 0 15px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 86%;
+  height: 60%;
+  font-size: 15px;
+  color: var(--black);
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #f5f7fc;
+}
+
+.main .navigation .searchBox input:focus, .main .navigation .searchBox input:active {
+  border: none;
+  outline: none;
+}
+
+.main .navigation .searchBox input::-webkit-input-placeholder {
+  color: #989899;
+}
+
+.main .navigation .searchBox input:-ms-input-placeholder {
+  color: #989899;
+}
+
+.main .navigation .searchBox input::-ms-input-placeholder {
+  color: #989899;
+}
+
+.main .navigation .searchBox input::placeholder {
+  color: #989899;
+}
+
+.main .navigation .searchBox svg {
+  position: absolute;
+  top: 50%;
+  right: 13%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  color: #989899;
+  cursor: pointer;
+}
+
+.main .navigation .el-scrollbar {
+  height: calc(100% - 60px);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: var(--white);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+}
+
+.main .navigation .dataEmpty {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main .navigation .dataEmpty svg {
+  width: 50%;
+  height: 50%;
+}
+
+.main .navigation .dataEmpty span {
+  color: var(--black);
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.main .navigation.IsActive {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+.main .content {
+  padding: 10px 20px 10px 10px;
+  width: calc(100% - 250px);
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.main .content #container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: #fff;
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  overflow: hidden;
+}
+
+.main .content #container .systemDetail {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 8px;
+  border: 1px solid #eceff4;
+  background-color: rgba(76, 100, 242, 0.95);
+  -webkit-box-shadow: var(--box-shadow);
+          box-shadow: var(--box-shadow);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+  cursor: default;
+}
+
+.main .content #container .systemDetail ul {
+  padding: 10px;
+  margin: 0;
+  list-style: none;
+  display: block;
+  min-width: 150px;
+  max-width: 300px;
+  max-height: 150px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow-anchor: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main .content #container .systemDetail ul::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.main .content #container .systemDetail ul li {
+  width: 100%;
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+.main .content #container .systemAbnormal {
+  padding: 15px 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  color: var(--white);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main .content #container .zoomInOn {
+  position: absolute;
+  padding: 10px 5px;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 60px;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.main .content #container .zoomInOn .magnify,
+.main .content #container .zoomInOn .reduce {
+  width: 42%;
+  height: 100%;
+  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--theme-color);
+  border: 1px solid #eceff4;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.main .content #container .zoomInOn .magnify:hover,
+.main .content #container .zoomInOn .reduce:hover {
+  background-color: #f2f5fa;
+}
+
+.main .content #container .zoomInOn .magnify svg,
+.main .content #container .zoomInOn .reduce svg {
+  width: 55%;
+  height: 90%;
+}
+
+ul.el-menu {
+  border: none;
+  width: 100%;
+  z-index: 0;
+}
+
+ul.el-menu .first_el-menu-item.el-menu-item {
+  background-color: #f5f7fc;
+  border-left: 4px solid var(--theme-color);
+  font-weight: bold;
+  color: var(--theme-color);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.el-sub-menu li.el-menu-item,
+ul.el-menu li.el-menu-item.el-tooltip__trigger {
+  padding-left: 25px !important;
+  -webkit-transition: none;
+  transition: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  font-size: 16px;
+  border-left: 4px solid transparent;
+}
+
+.el-menu-item:hover {
+  /* background-color: #edeffe; */
+  background-color: #f5f7fc;
+}
+
+.el-menu-item.is-active {
+  /* background-color: #edeffe; */
+  background-color: #f5f7fc;
+  border-left: 4px solid var(--theme-color);
+  font-weight: bold;
+  color: var(--theme-color);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.el-menu-item-group {
+  padding: 0;
+}
+
+/* 提示语Start */
+.prompt {
+  padding: 0 1%;
+  width: 100%;
+  font-size: 14px;
+  color: #989899;
+}
+
+/* 提示语End */
+/* ROADM主板卡详情START */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.Content .modalMainRoadmBoardDetails {
+  width: 60%;
+  width: 620px;
+  height: 650px;
+  padding: 0 50px 20px 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.Content .modalMainRoadmBoardDetails .title {
+  width: 100%;
+  height: 60px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 24px;
+  color: var(--theme-color);
+  text-align: center;
+  line-height: 60px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+  padding-bottom: 20px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent {
+  width: 100%;
+  height: calc(100%);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border-radius: 4px;
+  border: 2px dashed var(--theme-color);
+  background-color: #f6f7ff;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .graphTitle {
+  width: 100%;
+  height: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain {
+  padding: 16px 0;
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* justify-content: space-between; */
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting {
+  position: relative;
+  position: relative;
+  height: 50%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting span.SubName,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting span.SubName,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting span.SubName,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting span.SubName {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--black);
+  text-align: center;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo {
+  position: relative;
+  width: 100%;
+  height: 40px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne hr,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo hr {
+  position: absolute;
+  top: 39%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 99%;
+  border: 1.5px solid #91a1ff;
+  background-color: #91a1ff;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne img,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo img {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 65px;
+  height: 60px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 30px;
+  height: 40px;
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 40px;
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting::after {
+  content: "主路由";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting::after {
+  content: "备路由";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting span.SubName,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting span.SubName {
+  left: -105%;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne::after {
+  left: -30px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo::after {
+  left: -28px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting::after {
+  left: 10%;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting::after {
+  left: 10%;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainLeft .pillars {
+  right: 5px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting span.SubName,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting span.SubName {
+  right: -105%;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne::after {
+  right: -28px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo::after,
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo::after {
+  right: -30px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting::after {
+  right: 10%;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting::after {
+  right: 10%;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .mainRight .pillars {
+  left: 5px;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .pillars {
+  width: 60px;
+  height: 100%;
+  border-radius: 4px;
+  background-color: #8696f7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.Content .modalMainRoadmBoardDetails .graph .graphContent .contentMain .pillars span {
+  width: 20px;
+  line-height: 24px;
+  color: #fff;
+  font-size: 20px;
+  word-wrap: break-word;
+}
+
+/* ROADM主板卡详情END */
+/* OLP主板卡详情START */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.Content .modalMainOlpBoardDetails {
+  width: 60%;
+  width: 620px;
+  height: 650px;
+  padding: 0 50px 20px 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.Content .modalMainOlpBoardDetails .title {
+  width: 100%;
+  height: 60px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 24px;
+  color: var(--theme-color);
+  text-align: center;
+  line-height: 60px;
+}
+
+.Content .modalMainOlpBoardDetails .graph {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+  padding-bottom: 20px;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent {
+  width: 100%;
+  height: calc(100%);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border-radius: 4px;
+  border: 2px dashed var(--theme-color);
+  background-color: #f6f7ff;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .graphTitle {
+  width: 100%;
+  height: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting span.SubName,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting span.SubName,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting span.SubName,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting span.SubName {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--black);
+  text-align: center;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo {
+  position: relative;
+  width: calc(100% - 5px - 34px);
+  height: 40px;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne hr,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo hr {
+  position: absolute;
+  top: 39%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 99%;
+  border: 1.5px solid #91a1ff;
+  background-color: #91a1ff;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo img {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  width: 65px;
+  height: 60px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 30px;
+  height: 40px;
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 40px;
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting::after {
+  content: "主路由";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting::after {
+  content: "备路由";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .pillars,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .pillars {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 34px;
+  height: 90%;
+  border-radius: 4px;
+  background-color: #8696f7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .pillars span,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .pillars span {
+  width: 20px;
+  line-height: 24px;
+  color: #fff;
+  font-size: 20px;
+  word-wrap: break-word;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting span.SubName,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting span.SubName {
+  left: -105%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne::after {
+  left: -30px;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne P,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne P,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne P,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne P {
+  -webkit-transform: translate(-90%, -50%);
+          transform: translate(-90%, -50%);
+  color: #fff;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingOne img {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo::after {
+  left: -28px;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo p,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo p {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .mainRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting .viceRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .mainRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting .viceRoutingTwo img {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .mainRouting::after {
+  left: 10%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .viceRouting::after {
+  left: 10%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainLeft .pillars {
+  right: 5px;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting span.SubName,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting span.SubName {
+  right: -105%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne::after {
+  right: -28px;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingOne img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingOne img {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo::after,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo::after {
+  right: -30px;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .mainRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting .viceRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .mainRoutingTwo img,
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting .viceRoutingTwo img {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .mainRouting::after {
+  right: 10%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .viceRouting::after {
+  right: 10%;
+}
+
+.Content .modalMainOlpBoardDetails .graph .graphContent .contentMain .mainRight .pillars {
+  left: 5px;
+}
+
+.contentLeft .main,
+.contentLeft .standby,
+.contentRight .main,
+.contentRight .standby {
+  position: relative;
+  height: 50%;
+}
+
+.contentStandby .standbyRight .pillars {
+  left: 5px;
+}
+
+/* OLP主板卡详情END */
+/* MUX2主板卡详情START */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.Content .modalMainBoardDetails {
+  width: 60%;
+  width: 620px;
+  height: 650px;
+  padding: 0 50px 20px 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.Content .modalMainBoardDetails .title {
+  width: 100%;
+  height: 60px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 24px;
+  color: var(--theme-color);
+  text-align: center;
+  line-height: 60px;
+}
+
+.Content .modalMainBoardDetails .graph {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+  padding-bottom: 20px;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent {
+  width: 100%;
+  height: calc(100%);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border-radius: 4px;
+  border: 2px dashed var(--theme-color);
+  background-color: #f6f7ff;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .graphTitle {
+  width: 100%;
+  height: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby {
+  width: 100%;
+  height: 49%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .pillars {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 34px;
+  height: 90%;
+  border-radius: 4px;
+  background-color: #8696f7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .pillars span,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .pillars span,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .pillars span,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .pillars span,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .pillars span,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .pillars span,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .pillars span,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .pillars span {
+  width: 20px;
+  line-height: 24px;
+  color: #fff;
+  font-size: 20px;
+  word-wrap: break-word;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo {
+  position: absolute;
+  width: calc(100% - 5px - 34px);
+  height: 40px;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne hr,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo hr {
+  position: absolute;
+  top: 39%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 99%;
+  border: 1.5px solid #91a1ff;
+  background-color: #91a1ff;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo img {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  width: 65px;
+  height: 60px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne {
+  top: 15%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne p {
+  -webkit-transform: translate(-90%, -50%);
+          transform: translate(-90%, -50%);
+  color: #fff;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne img {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 30px;
+  height: 40px;
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo {
+  bottom: 15%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo p,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo p {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo img,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo img {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 40px;
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .pillars {
+  left: 5px;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo {
+  right: 0;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingOne::after {
+  right: -15.5px;
+  right: -28px;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight .standbyRoutingTwo::after {
+  right: -15.5px;
+  right: -30px;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight::before,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyRight::before,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainRight::before,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight::before {
+  left: auto;
+  right: 10%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .pillars,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .pillars {
+  right: 5px;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo {
+  left: 0;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingOne::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingOne::after {
+  left: -30px;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .standbyLeft .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .mainLeft .standbyRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .mainRoutingTwo::after,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft .standbyRoutingTwo::after {
+  left: -15.5px;
+  left: -28px;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft span.SubName,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight span.SubName {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--black);
+  text-align: center;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainLeft span.SubName,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainLeft span.SubName {
+  left: -105%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft .mainRight span.SubName,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight .mainRight span.SubName {
+  right: -105%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainLeft::before,
+.Content .modalMainBoardDetails .graph .graphContent .contentMain .mainRight::before {
+  /* 假数据Start */
+  content: "主路由";
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft span.SubName,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight span.SubName {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 100%;
+  font-size: 18px;
+  color: var(--black);
+  text-align: center;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft::before,
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight::before {
+  content: "备路由";
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyLeft span.SubName {
+  left: -105%;
+}
+
+.Content .modalMainBoardDetails .graph .graphContent .contentStandby .standbyRight span.SubName {
+  right: -105%;
+}
+
+/* MUX2主板卡详情END */
+/* MUX主板卡详情 */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.Content .modalMainMuxBoardDetails {
+  width: 60%;
+  width: 620px;
+  height: 400px;
+  padding: 0 50px 20px 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 auto;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.Content .modalMainMuxBoardDetails .title {
+  width: 100%;
+  height: 60px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 24px;
+  color: var(--theme-color);
+  text-align: center;
+  line-height: 60px;
+}
+
+.Content .modalMainMuxBoardDetails .graph {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+  padding-bottom: 20px;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent {
+  width: 100%;
+  height: calc(100%);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border-radius: 4px;
+  border: 2px dashed var(--theme-color);
+  background-color: #f6f7ff;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .graphTitle {
+  width: 100%;
+  height: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain {
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft span.SubName,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight span.SubName {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--black);
+  text-align: center;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .pillars,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .pillars {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 34px;
+  height: 90%;
+  border-radius: 4px;
+  background-color: #8696f7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .pillars span,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .pillars span {
+  width: 20px;
+  line-height: 24px;
+  color: #fff;
+  font-size: 20px;
+  word-wrap: break-word;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo {
+  position: absolute;
+  width: calc(100% - 5px - 34px);
+  height: 40px;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne hr,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo hr,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne hr,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo hr {
+  position: absolute;
+  top: 39%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 99%;
+  border: 1.5px solid #91a1ff;
+  background-color: #91a1ff;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne img,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo img,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne img,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo img {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  width: 65px;
+  height: 60px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne p,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo p,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne p,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne {
+  top: 15%;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne p,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne p {
+  -webkit-transform: translate(-90%, -50%);
+          transform: translate(-90%, -50%);
+  color: #fff;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne img,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne img {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne::after,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 30px;
+  height: 40px;
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo {
+  bottom: 15%;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo p,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo p {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo img,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo img {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo::after,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 40px;
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft::before,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight::before {
+  /* 假数据Start */
+  content: "主路由";
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft span.SubName {
+  left: -105%;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .pillars {
+  right: 5px;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo {
+  left: 0;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingOne::after {
+  left: -30px;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainLeft .mainRoutingTwo::after {
+  left: -15.5px;
+  left: -28px;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight span.SubName {
+  right: -105%;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .pillars {
+  left: 5px;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne,
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo {
+  right: 0;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingOne::after {
+  right: -15.5px;
+  right: -28px;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight .mainRoutingTwo::after {
+  right: -15.5px;
+  right: -30px;
+}
+
+.Content .modalMainMuxBoardDetails .graph .graphContent .contentMain .mainRight::before {
+  left: auto;
+  right: 10%;
+}
+
+/* MUX2主板卡详情END */
+/* 光放站板卡详情SATRT */
+.modalLightLetStandBoardCardDetails {
+  width: 100%;
+  height: 800px;
+  margin: 0;
+  padding: 0;
+}
+
+.modalLightLetStandBoardCardDetails .topo {
+  position: relative;
+  width: 100%;
+  height: 35%;
+  /* height: 270px; */
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard {
+  width: 100%;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 25% 0 16%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .img {
+  position: relative;
+  min-width: 80px;
+  height: 150%;
+  margin-left: calc(50px + 25px);
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .img img {
+  width: 100%;
+  height: 100%;
+  /* transform: rotate(270deg); */
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .img::after {
+  content: "";
+  position: absolute;
+  right: calc(-82%);
+  top: 50%;
+  width: 100%;
+  height: 4px;
+  border: none;
+  background-color: #91a1ff;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardIN {
+  position: relative;
+  min-width: 60px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--theme-color);
+  border-radius: 8px;
+  border: 3px dashed var(--theme-color);
+  background-color: #f6f7ff;
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardIN::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -53px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 50px;
+  height: 40px;
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 100%;
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardExternalVOA {
+  position: relative;
+  min-width: 50px;
+  height: 30px;
+  border-radius: 4px;
+  border: 3px solid #6d81f4;
+  background-color: #f6f7ff;
+  margin-left: calc(50px + 20px);
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardExternalVOA span {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  white-space: nowrap;
+  color: #91a1ff;
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardExternalVOA::after {
+  content: "";
+  position: absolute;
+  left: calc(-120% - 3px);
+  top: 50%;
+  width: 120%;
+  height: 4px;
+  border: none;
+  background-color: #91a1ff;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardVOA {
+  position: relative;
+  min-width: 50px;
+  height: 30px;
+  border-radius: 4px;
+  border: 3px solid #6d81f4;
+  background-color: #f6f7ff;
+  margin-left: calc(50px + 10px);
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardVOA span {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  white-space: nowrap;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  color: #91a1ff;
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardVOA::after {
+  content: "";
+  position: absolute;
+  left: calc(-120% - 3px);
+  top: 50%;
+  width: 120%;
+  height: 4px;
+  border: none;
+  background-color: #91a1ff;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardVOA::before {
+  position: absolute;
+  content: "";
+  right: calc(-150% - 3px);
+  top: 50%;
+  width: 150%;
+  height: 100%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 140%;
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardOUT {
+  position: relative;
+  min-width: 60px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--theme-color);
+  border-radius: 8px;
+  border: 3px dashed var(--theme-color);
+  background-color: #f6f7ff;
+  margin-left: calc(50px * 2 + 25px);
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardOUT::after {
+  position: absolute;
+  content: "";
+  /* left: calc(-150% - 3px); */
+  left: calc(-120% - 3px);
+  /* top: 50%; */
+  top: 48%;
+  width: 120%;
+  height: 100%;
+  -webkit-transform: translate(0, -49.5%);
+          transform: translate(0, -49.5%);
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 125%;
+}
+
+.modalLightLetStandBoardCardDetails .topo .boardCard .cardOUT::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -53px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 50px;
+  height: 40px;
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 100%;
+}
+
+.modalLightLetStandBoardCardDetails .topo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-55%, -50%);
+          transform: translate(-55%, -50%);
+  width: 300px;
+  height: 150px;
+  border-radius: 4px;
+  border: 3px dashed var(--theme-color);
+  background-color: #f6f7ff;
+  z-index: -1;
+}
+
+.modalLightLetStandBoardCardDetails .table {
+  width: 100%;
+  height: 65%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne {
+  width: 55%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 1% 0% 5% 10%;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul {
+  width: 60%;
+  height: 100%;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li {
+  position: relative;
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border: 2px solid #8394f8;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 8px;
+  margin-top: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .title,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .value,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .valueGroup {
+  width: 50%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .title {
+  border-right: 2px solid #dce0fa;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup {
+  border-right: 2px solid #dce0fa;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .valueGroup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup .titleOne,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup .titleTwo,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup .valueOne,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup .valueTwo,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .valueGroup .titleOne,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .valueGroup .titleTwo,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .valueGroup .valueOne,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .valueGroup .valueTwo {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup .titleOne,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .titleGroup .valueOne,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .valueGroup .titleOne,
+.modalLightLetStandBoardCardDetails .table .tableOne ul li .valueGroup .valueOne {
+  border-bottom: 2px solid #dce0fa;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(1) {
+  margin-top: 0;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(1) .Line {
+  position: absolute;
+  top: -115%;
+  right: 15%;
+  -webkit-transform: translate(-15%, 0);
+          transform: translate(-15%, 0);
+  width: 30%;
+  height: 135%;
+  border: none;
+  border-top: 2px solid #f28863;
+  border-right: 2px solid #f28863;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(1) .Line::after {
+  position: absolute;
+  content: "";
+  right: -6.5px;
+  bottom: 0;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #fff;
+  border: 2px solid #f39372;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(1) .Line::before {
+  content: "";
+  position: absolute;
+  top: calc(-108% - 2px);
+  left: -35%;
+  -webkit-transform: translate(-1%, 0%);
+          transform: translate(-1%, 0%);
+  width: 35%;
+  height: 108%;
+  border: 2px solid #f28863;
+  border-top-left-radius: 2px;
+  border-right: none;
+  border-top: none;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(2) .Line {
+  position: absolute;
+  top: -365%;
+  right: 0%;
+  -webkit-transform: translate(-15%, 0);
+          transform: translate(-15%, 0);
+  width: 50%;
+  height: 385%;
+  border: none;
+  border-right: 2px solid #f28863;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(2) .Line::after {
+  position: absolute;
+  content: "";
+  right: -6.5px;
+  bottom: 0;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #fff;
+  border: 2px solid #f39372;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(3) .Line {
+  position: absolute;
+  top: -485%;
+  right: -23%;
+  -webkit-transform: translate(-10%, 0);
+          transform: translate(-10%, 0);
+  width: 22%;
+  height: 535%;
+  border: none;
+  border-right: 2px solid #f28863;
+  border-bottom: 2px solid #f28863;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(3) .Line::after {
+  position: absolute;
+  content: "";
+  left: -6.5px;
+  bottom: -6.5px;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #fff;
+  border: 2px solid #f39372;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(4) .Line {
+  position: absolute;
+  top: -615.5%;
+  right: -39.2%;
+  -webkit-transform: translate(-9%, 0);
+          transform: translate(-9%, 0);
+  width: 37%;
+  height: 665%;
+  border: none;
+  border-right: 2px solid #f28863;
+  border-bottom: 2px solid #f28863;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(4) .Line::after {
+  position: absolute;
+  content: "";
+  left: -6.5px;
+  bottom: -6.5px;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #fff;
+  border: 2px solid #f39372;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(5) .Line {
+  position: absolute;
+  top: -730%;
+  right: -60.5%;
+  -webkit-transform: translate(-10%, 0);
+          transform: translate(-10%, 0);
+  width: 56%;
+  height: 780%;
+  border: none;
+  border-right: 2px solid #f28863;
+  border-bottom: 2px solid #f28863;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(5) .Line::after {
+  position: absolute;
+  content: "";
+  left: -6.5px;
+  bottom: -6.5px;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #fff;
+  border: 2px solid #f39372;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(6) .Line {
+  position: absolute;
+  top: -852.5%;
+  right: -81.3%;
+  -webkit-transform: translate(-10%, 0);
+          transform: translate(-10%, 0);
+  width: 75%;
+  height: 902%;
+  border: none;
+  border-right: 2px solid #f28863;
+  border-bottom: 2px solid #f28863;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableOne ul li:nth-child(6) .Line::after {
+  position: absolute;
+  content: "";
+  left: -6.5px;
+  bottom: -6.5px;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #fff;
+  border: 2px solid #f39372;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo {
+  width: 45%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 1% 5% 5% 8%;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #8394f8;
+  border-radius: 10px;
+  padding: 1px;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .tableDataLine {
+  position: absolute;
+  content: "";
+  top: -49%;
+  left: -75%;
+  -webkit-transform: translate(30%, 0);
+          transform: translate(30%, 0);
+  width: 95%;
+  height: 52%;
+  border: 2px solid #f39372;
+  border-top-right-radius: 4px;
+  border-bottom: none;
+  border-left: none;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .tableDataLine::after {
+  position: absolute;
+  content: "";
+  right: -6.5px;
+  bottom: 0;
+  width: 6.5px;
+  height: 6.5px;
+  background-color: #fff;
+  border: 2px solid #f39372;
+  border-radius: 50px;
+  -webkit-box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .oaBoardType,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .slot,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .channelNumber,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .troubleCount {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border-bottom: 2px solid #dce0fa;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .oaBoardType .dataTitle,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .slot .dataTitle,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .channelNumber .dataTitle,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .troubleCount .dataTitle {
+  width: 40%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-right: 2px solid #dce0fa;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .oaBoardType .dataValue,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .slot .dataValue,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .channelNumber .dataValue,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .troubleCount .dataValue {
+  width: 60%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  place-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .oaBoardType {
+  height: 16%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .slot {
+  height: 18%;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .channelNumber {
+  height: 16%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .troubleCount {
+  height: 16%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction {
+  width: 100%;
+  height: calc(100% - 16% - 18% - 16% - 16%);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .titleGroup {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 40%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .titleGroup .mainGroup {
+  width: 60%;
+  height: 100%;
+  border-right: 2px solid #dce0fa;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .titleGroup .viceGroup {
+  width: 40%;
+  height: 100%;
+  border-right: 2px solid #dce0fa;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .titleGroup .viceGroup span {
+  width: 100%;
+  height: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .titleGroup .viceGroup span:nth-of-type(1) {
+  border-bottom: 2px solid #dce0fa;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .valueGroup {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 60%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .valueGroup .valueClosed,
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .valueGroup .valueHair {
+  width: 100%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalLightLetStandBoardCardDetails .table .tableTwo .tableData .direction .valueGroup .valueClosed {
+  border-bottom: 2px solid #dce0fa;
+}
+
+/* 光放站板卡详情END */
+/* 光缆详情START */
+.modalCableDetails {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modalCableDetails::after {
+  position: absolute;
+  content: "";
+  left: 5%;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  width: 23%;
+  height: 75%;
+  background-color: #f6f7ff;
+  border: 2px dashed var(--theme-color);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.modalCableDetails::before {
+  position: absolute;
+  content: "";
+  right: 5%;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  width: 23%;
+  height: 75%;
+  background-color: #f6f7ff;
+  border: 2px dashed var(--theme-color);
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation,
+.modalCableDetails .opticalCableReception .fiberOrientation {
+  position: absolute;
+  padding: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 73%;
+  height: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation .contentIn,
+.modalCableDetails .opticalCableSignalling .fiberOrientation .contentOut,
+.modalCableDetails .opticalCableReception .fiberOrientation .contentIn,
+.modalCableDetails .opticalCableReception .fiberOrientation .contentOut {
+  position: absolute;
+  padding: 1px;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation .contentIn,
+.modalCableDetails .opticalCableReception .fiberOrientation .contentIn {
+  left: 60px;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.04)), color-stop(rgba(0, 0, 0, 0.03)), color-stop(rgba(0, 0, 0, 0.02)), to(rgba(0, 0, 0, 0.01)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.01));
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation .contentIn span,
+.modalCableDetails .opticalCableReception .fiberOrientation .contentIn span {
+  padding: 2% 5%;
+  width: 100%;
+  height: 50%;
+  font-size: 16px;
+  text-align: left;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation .contentOut,
+.modalCableDetails .opticalCableReception .fiberOrientation .contentOut {
+  right: 60px;
+  background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.04)), color-stop(rgba(0, 0, 0, 0.03)), color-stop(rgba(0, 0, 0, 0.02)), to(rgba(0, 0, 0, 0.01)));
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.01));
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation .contentOut span,
+.modalCableDetails .opticalCableReception .fiberOrientation .contentOut span {
+  padding: 2% 5%;
+  width: 100%;
+  height: 50%;
+  font-size: 16px;
+  text-align: right;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation hr,
+.modalCableDetails .opticalCableReception .fiberOrientation hr {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 90%;
+  border: 2px solid #91a1ff;
+  background-color: #91a1ff;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation svg,
+.modalCableDetails .opticalCableReception .fiberOrientation svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 40px;
+  height: 30px;
+  color: #91a1ff;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation img:nth-of-type(1), .modalCableDetails .opticalCableSignalling .fiberOrientation img:nth-of-type(2),
+.modalCableDetails .opticalCableReception .fiberOrientation img:nth-of-type(1),
+.modalCableDetails .opticalCableReception .fiberOrientation img:nth-of-type(2) {
+  position: absolute;
+  width: 10%;
+  height: 100%;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation img:nth-of-type(1),
+.modalCableDetails .opticalCableReception .fiberOrientation img:nth-of-type(1) {
+  left: -1%;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation img:nth-of-type(2),
+.modalCableDetails .opticalCableReception .fiberOrientation img:nth-of-type(2) {
+  right: -1%;
+}
+
+.modalCableDetails .opticalCableSignalling {
+  position: relative;
+  width: 100%;
+  height: 46%;
+}
+
+.modalCableDetails .opticalCableSignalling span.subName {
+  padding: 0.8% 0%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 50px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 24px;
+  text-align: center;
+  color: var(--theme-color);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modalCableDetails .opticalCableSignalling span.subName:hover,
+.modalCableDetails .opticalCableSignalling span.subName:active {
+  -webkit-animation: fiberNameDetails 0.35s 1 0.5s forwards ease;
+          animation: fiberNameDetails 0.35s 1 0.5s forwards ease;
+}
+
+.modalCableDetails .opticalCableSignalling span.subName:hover::-webkit-scrollbar,
+.modalCableDetails .opticalCableSignalling span.subName:active::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation {
+  bottom: 0;
+}
+
+.modalCableDetails .opticalCableSignalling .fiberOrientation img:nth-of-type(1), .modalCableDetails .opticalCableSignalling .fiberOrientation img:nth-of-type(2) {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 90%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .send,
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .receive {
+  width: 35%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .send .sendTitle,
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .receive .sendTitle {
+  padding: 4px 8px;
+  width: 74%;
+  height: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 18px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .send .sendVal,
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .receive .sendVal {
+  padding-bottom: 8px;
+  width: 26%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #91a1ff;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData {
+  width: 30%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .longLeather {
+  width: 35%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  background-color: #f5f7fc;
+  border-right: 2px solid #fff;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .longLeather .longLeatherTitle,
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .longLeather .longLeatherVal {
+  width: 100%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .loss {
+  width: 65%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .loss .lossTitle,
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .loss .lossVal {
+  width: 100%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #f5f7fc;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .loss .lossTitle {
+  border-bottom: 2px solid #fff;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .loss .lossTitle span:nth-of-type(1) {
+  -webkit-box-flex: 1.35;
+      -ms-flex: 1.35;
+          flex: 1.35;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .loss .lossTitle span:nth-of-type(2) {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .loss .lossVal span:nth-of-type(1) {
+  -webkit-box-flex: 1.35;
+      -ms-flex: 1.35;
+          flex: 1.35;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableSignalling .opticalCableReceive .sendData .loss .lossVal span:nth-of-type(2) {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@-webkit-keyframes fiberNameDetails {
+  100% {
+    padding: 1% 2%;
+    width: 70%;
+    height: -webkit-max-content;
+    height: max-content;
+    max-height: 100%;
+    min-height: 50px;
+    line-height: 32px;
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+    -webkit-transform: translateX(-50%) scale(1);
+            transform: translateX(-50%) scale(1);
+    text-overflow: none;
+    font-size: 20px;
+    white-space: pre-wrap;
+    background-color: #f6f7ff;
+    -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    overflow-anchor: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center;
+  }
+}
+
+@keyframes fiberNameDetails {
+  100% {
+    padding: 1% 2%;
+    width: 70%;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    max-height: 100%;
+    min-height: 50px;
+    line-height: 32px;
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+    -webkit-transform: translateX(-50%) scale(1);
+            transform: translateX(-50%) scale(1);
+    text-overflow: none;
+    font-size: 20px;
+    white-space: pre-wrap;
+    background-color: #f6f7ff;
+    -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    overflow-anchor: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.modalCableDetails .opticalCableReception {
+  position: relative;
+  width: 100%;
+  height: 46%;
+}
+
+.modalCableDetails .opticalCableReception .fiberOrientation {
+  top: 0;
+}
+
+.modalCableDetails .opticalCableReception .fiberOrientation svg {
+  -webkit-transform: translate(-50%, -50%) rotate(180deg);
+          transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 44%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  padding: 5px 0;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .send,
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .receive {
+  width: 22%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .send .sendVal,
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .receive .sendVal {
+  padding-top: 8px;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #91a1ff;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .send .sendVal {
+  padding-left: 20px;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .receive .sendVal {
+  padding-right: 20px;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData {
+  width: 56%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .longLeather {
+  width: 35%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  background-color: #f5f7fc;
+  border-right: 2px solid #fff;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .longLeather .longLeatherTitle,
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .longLeather .longLeatherVal {
+  width: 100%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .loss {
+  width: 65%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .loss .lossTitle,
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .loss .lossVal {
+  width: 100%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #f5f7fc;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .loss .lossTitle {
+  border-bottom: 2px solid #fff;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .loss .lossTitle span:nth-of-type(1) {
+  -webkit-box-flex: 1.35;
+      -ms-flex: 1.35;
+          flex: 1.35;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .loss .lossTitle span:nth-of-type(2) {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .loss .lossVal span:nth-of-type(1) {
+  -webkit-box-flex: 1.35;
+      -ms-flex: 1.35;
+          flex: 1.35;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableReception .fiberOpticCableToSend .sendData .loss .lossVal span:nth-of-type(2) {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modalCableDetails .opticalCableTitle {
+  width: 100%;
+  height: 8%;
+  color: #f26374;
+  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/* 光缆详情END */
+/* 光放站详情START */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.Content .modalLightLetStandDetails {
+  width: 100%;
+  width: 400px;
+  margin: 0 auto;
+  height: 450px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Content .modalLightLetStandDetails .title {
+  width: 100%;
+  height: 40px;
+  font-size: 22px;
+  color: var(--theme-color);
+  text-align: center;
+}
+
+.Content .modalLightLetStandDetails .vice {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  border: 3px solid #91a1ff;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Content .modalLightLetStandDetails .vice span {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 80%;
+  font-size: 18px;
+  color: var(--black);
+  text-align: center;
+}
+
+.Content .modalLightLetStandDetails .vice span:nth-of-type(1) {
+  left: -82%;
+}
+
+.Content .modalLightLetStandDetails .vice span:last-of-type {
+  right: -82%;
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne,
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne hr,
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo hr {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 99%;
+  border: 1.5px solid #91a1ff;
+  background-color: #91a1ff;
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne div.oa_fingerprint,
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo div.oa_fingerprint {
+  position: relative;
+  width: 65px;
+  height: 60px;
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne div.oa_fingerprint img,
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo div.oa_fingerprint img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne div.oa_fingerprint p,
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo div.oa_fingerprint p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+  color: #333;
+  padding: 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne::after,
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(-30px - 3px);
+  width: 30px;
+  height: 40px;
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne::before,
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(-30px - 3px);
+  width: 30px;
+  height: 40px;
+  font-size: 18px;
+  color: #333;
+  background: url("@/assets/arrow.png") no-repeat center;
+  background-size: 100% 79%;
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne div.oa_fingerprint img {
+  -webkit-transform: translate(-40%, -50%);
+          transform: translate(-40%, -50%);
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingOne::after, .Content .modalLightLetStandDetails .vice .viceRoutingOne::before {
+  -webkit-transform: translateY(-50%) rotate(0deg);
+          transform: translateY(-50%) rotate(0deg);
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo div.oa_fingerprint img {
+  -webkit-transform: translate(-60%, -50%);
+          transform: translate(-60%, -50%);
+}
+
+.Content .modalLightLetStandDetails .vice .viceRoutingTwo::after, .Content .modalLightLetStandDetails .vice .viceRoutingTwo::before {
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+}
+
+/* 光放站详情END */
+/*# sourceMappingURL=index.css.map */

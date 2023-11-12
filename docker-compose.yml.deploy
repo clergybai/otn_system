@@ -1,0 +1,55 @@
+version: "3.4"
+services:
+  redis:
+    image: redis:6
+    networks: [inner]
+  webapi:
+    build: .
+    image: otn-api
+    depends_on: [redis]
+    ports:
+      - "49960:49960"
+    networks: [inner]
+    restart: on-failure
+    command: web-api
+    env_file: [deploy/compose/main.env]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  loginApi:
+    build: .
+    image: otn-api
+    depends_on: [redis]
+    ports:
+      - "54393:54393"
+    networks: [inner]
+    restart: on-failure
+    command: login-api
+    env_file: [deploy/compose/main.env]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  paramsApi:
+    build: .
+    image: otn-api
+    depends_on: [redis]
+    ports:
+      - "49964:49964"
+    networks: [inner]
+    restart: on-failure
+    command: params-api
+    env_file: [deploy/compose/main.env]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  listenningApi:
+    build: .
+    image: otn-api
+    depends_on: [redis]
+    ports:
+      - "49966:49966"
+    networks: [inner]
+    restart: on-failure
+    command: listenning-api
+    env_file: [deploy/compose/main.env]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+networks:
+  inner: {}

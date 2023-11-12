@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 from sqlalchemy import func
 import datetime
-from ..database import EmptyModel, lo_session
+from common.database import EmptyModel, Lo_Session
 
 
 class User(EmptyModel):
@@ -61,30 +61,44 @@ class User(EmptyModel):
 
     @classmethod
     def find_user_by(cls, **kwargs):
-        return lo_session.query(cls).filter_by(**kwargs).one_or_none()
+        with Lo_Session() as session:
+            return session.query(cls).filter_by(**kwargs).one_or_none()
 
     @classmethod
     def get_users_num(cls):
-        return lo_session.query(func.count(cls.user_name).label('count')).scalar()
+        with Lo_Session() as session:
+            return session.query(func.count(cls.user_name).label('count')).scalar()
 
     @classmethod
     def get_users(cls, **kwargs):
-        query = lo_session.query(cls)
-        for key, val in kwargs.items():
-            query = query.filter(getattr(cls, key).like('%'+val+'%'))
-        return query.order_by(cls.user_name).all()
+        with Lo_Session() as session:
+            query = session.query(cls)
+            for key, val in kwargs.items():
+                query = query.filter(getattr(cls, key).like('%'+val+'%'))
+            return query.order_by(cls.user_name).all()
 
     @classmethod
     def add_user(cls, **kwargs):
         new_user = cls(
             **kwargs)
-        lo_session.add(new_user)
-        lo_session.commit()
+        with Lo_Session() as session:
+            try:
+                session.add(new_user)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e
 
     @classmethod
     def update_user(cls, user_name, **kwargs):
-        rows_updated = lo_session.query(cls).filter_by(user_name=user_name).update(kwargs)
-        lo_session.commit()
-        if rows_updated > 0:
-            return True
-        return False
+        with Lo_Session() as session:
+            rows_updated = 0
+            try:
+                rows_updated = session.query(cls).filter_by(user_name=user_name).update(kwargs)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e
+            if rows_updated > 0:
+                return True
+            return False

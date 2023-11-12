@@ -18,7 +18,10 @@ def date_handler(obj):
         return obj.isoformat()
 
 
-app.include_router(get_trouble.router, prefix="/webapi")
-app.include_router(draw_topo.router, prefix="/api")
-app.include_router(get_trouble_detail.router, prefix="/api")
+# app.include_router(get_trouble.router, prefix="/webapi")
+app.include_router(get_trouble.router)
+# app.include_router(draw_topo.router, prefix="/api")
+app.include_router(draw_topo.router)
+# app.include_router(get_trouble_detail.router, prefix="/api")
+app.include_router(get_trouble_detail.router)
 app.include_router(post.router)

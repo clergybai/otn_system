@@ -4,12 +4,12 @@ from ..models.input_voa_config import InputVoaConfig
 
 
 def get_all_filters():
-    boards = InputOaBoardStandard.get_input_oa_board_standards()
+    boards = InputOaBoardStandard.get_distinct_oa_board_standards_filter()
     return [{"board_model": bd.board_model} for bd in boards]
 
 
 def get_board_by_page(page_idx, page_size, filters=None):
-    boards = InputOaBoardStandard.get_board_by_page_size(11, page_idx, page_size, filters)
+    boards = InputOaBoardStandard.get_board_by_page_size(0, page_idx, page_size, filters)
     return [{
         "board_model": bd.board_model,
         "standard_gain_min": bd.standard_gain_min,
@@ -42,7 +42,7 @@ def get_voa_config_by_page(page_idx, page_size, filters=None):
 
 
 def get_board_total(filters):
-    return InputOaBoardStandard.get_board_total(11, filters=filters)
+    return InputOaBoardStandard.get_board_total(0, filters=filters)
 
 
 def get_board_type_total(filters):
@@ -82,5 +82,17 @@ def add_board_info(info):
         standard_gain_min=standard_gain_min,
         standard_single_40_wave_output=standard_single_40_wave_output,
         standard_single_80_wave_output=standard_single_80_wave_output,
-        standard_single_96_wave_output=standard_single_96_wave_output)
+        standard_single_96_wave_output=standard_single_96_wave_output,
+        is_history=0)
     return True
+
+
+def get_voa_config_filter():
+    voa_configs = InputVoaConfig.get_distinct_voa_configs_filter()
+    return [{"sub_name": cfg.sub_name} for cfg in voa_configs]
+
+
+def get_board_type_filter():
+    board_types = InputOaBoardType.get_distinct_board_type_filter()
+    return [{"sub_name": bt.sub_name,
+             "board_model": bt.board_model} for bt in board_types]

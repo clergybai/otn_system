@@ -1,4 +1,6 @@
 from ..models.user_perms import UserPerms
+from ..models.front_city_permission import FrontCityPermission
+import json
 
 
 def get_user_perms(user_name):
@@ -32,3 +34,39 @@ def upsert_user_perm(**kwargs):
         kwargs['user_name'] = user_name
         UserPerms.add_new_user_perm(**kwargs)
         return True
+
+
+def get_menu_by_user(username):
+    perm_list = FrontCityPermission.get(is_history=0)
+    user_perm = UserPerms.get_by(user_name=username)
+    if user_perm is None:
+        return None
+    zones = json.loads(user_perm.zone_authen)
+    for item in zones:
+        infos = []
+        if "二干" in item["name"]:
+            front_eg = [find for find in perm_list if find.net_level == item["name"] and find.sys_name != ""]
+            front_eg = set([it.sys_name for it in front_eg]) # list(set(front_eg))
+            for index, front_item in enumerate(front_eg):
+                infos.append({
+                    "name": front_item,
+                    "code": front_item + "-" + str(index),
+                    "type": 0,
+                    "children": item['children'],
+                    "IsAuthentication": True
+                })
+        else:
+            front_ct = [find for find in perm_list if find.city == item["name"] and find.sys_name != "" and "二干" not in find.net_level]
+            front_ct = set([it.sys_name for it in front_ct])# list(set(front_ct))
+            for index, front_item in enumerate(front_ct):
+                infos.append({
+                    "name": front_item,
+                    "code": front_item + "-" + str(index),
+                    "type": 0,
+                    "children": item['children'],
+                    "IsAuthentication": True
+                })
+        val = next((find for find in zones if find["name"] == item["name"]), None)
+        if val:
+            val["children"] = sorted(infos, key=lambda x: x["name"])
+    return zones

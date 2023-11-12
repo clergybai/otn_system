@@ -1,5 +1,5 @@
 import sqlalchemy as sa
-from ..database import EmptyModel, lo_session
+from common.database import EmptyModel, Lo_Session
 
 import logging
 logging.basicConfig()
@@ -16,26 +16,34 @@ class FrontCityPermission(EmptyModel):
     is_history = sa.Column(sa.Integer)
 
     @classmethod
+    def get(cls, **kwargs):
+        with Lo_Session() as session:
+            return session.query(cls).filter_by(**kwargs).all()
+
+    @classmethod
     def get_by_one(cls, **filters):
-        return lo_session.query(cls).filter_by(**filters).one_or_none()
+        with Lo_Session() as session:
+            return session.query(cls).filter_by(**filters).one_or_none()
 
     @classmethod
     def get_by(cls, distinct_field, field_list, **filters):
         query_attrs = [getattr(cls, field_name) for field_name in field_list]
         distinct_attr = getattr(cls, distinct_field)
-        query = lo_session.query(*query_attrs)
+        with Lo_Session() as session:
+            query = session.query(*query_attrs)
 
-        for key, val in filters.items():
-            if isinstance(val, list):
-                query = query.filter(getattr(cls, key).in_(val))
-            else:
-                query = query.filter_by(**{key: val})
-        query = query.distinct(distinct_attr)
-        return query.all()
+            for key, val in filters.items():
+                if isinstance(val, list):
+                    query = query.filter(getattr(cls, key).in_(val))
+                else:
+                    query = query.filter_by(**{key: val})
+            query = query.distinct(distinct_attr)
+            return query.all()
 
     @classmethod
     def get_cities(cls):
-        return lo_session.query(cls.city).filter(cls.net_level.like('本地%')).group_by(cls.city).all()
+        with Lo_Session() as session:
+            return session.query(cls.city).filter(cls.net_level.like('本地%')).group_by(cls.city).all()
 
     @classmethod
     def bulk_add(cls, kwargs_list):
@@ -44,5 +52,10 @@ class FrontCityPermission(EmptyModel):
             front_city_permission = cls(**kwargs)
             front_city_permission_list.append(front_city_permission)
         if len(front_city_permission_list) > 0:
-            lo_session.add_all(front_city_permission_list)
-            lo_session.commit()
+            with Lo_Session() as session:
+                try:
+                    session.add_all(front_city_permission_list)
+                    session.commit()
+                except Exception as e:
+                    session.rollback()
+                    raise e

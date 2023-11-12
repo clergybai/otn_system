@@ -2,7 +2,7 @@ import sqlalchemy as sa
 from sqlalchemy.inspection import inspect
 import uuid
 from datetime import datetime
-from common.database import EmptyModel, tr_session
+from common.database import EmptyModel, Tr_Session
 
 
 class InputOaBoardStandard(EmptyModel):
@@ -33,29 +33,37 @@ class InputOaBoardStandard(EmptyModel):
 
     @classmethod
     def get_input_oa_board_standards(cls, **kwargs):
-        return tr_session.query(cls).filter_by(**kwargs).all()
+        with Tr_Session() as session:
+            return session.query(cls).filter_by(**kwargs).all()
+
+    @classmethod
+    def get_distinct_oa_board_standards_filter(cls, **kwargs):
+        with Tr_Session() as session:
+            return session.query(cls.board_model).distinct(cls.board_model).all()
 
     @classmethod
     def get_board_by_page_size(cls, history_val, page_idx, page_size, filters):
         idx = 0 if (page_idx - 1) < 0 else page_idx - 1
         start = idx * page_size
-        if filters is None:
-            return tr_session.query(cls).filter(cls.is_history > history_val).offset(start).limit(page_size).all()
+        with Tr_Session() as session:
+            if filters is None:
+                return session.query(cls).filter(cls.is_history == history_val).offset(start).limit(page_size).all()
 
-        query = cls.generate_query(history_val, filters)
-        return query.offset(start).limit(page_size).all()
+            query = cls.generate_query(session, history_val, filters)
+            return query.offset(start).limit(page_size).all()
 
     @classmethod
     def get_board_total(cls, history_val, filters):
-        if filters is None:
-            return tr_session.query(cls).filter(cls.is_history > history_val).count()
-        else:
-            query = cls.generate_query(history_val, filters)
-            return query.count()
+        with Tr_Session() as session:
+            if filters is None:
+                return session.query(cls).filter(cls.is_history == history_val).count()
+            else:
+                query = cls.generate_query(session, history_val, filters)
+                return query.count()
 
     @classmethod
-    def generate_query(cls, history_val, filters):
-        query = tr_session.query(cls).filter(cls.is_history > history_val)
+    def generate_query(cls, session, history_val, filters):
+        query = session.query(cls).filter(cls.is_history == history_val)
         for filter in filters:
             if len(filter.items()):
                 field_name = filter['name']
@@ -68,27 +76,39 @@ class InputOaBoardStandard(EmptyModel):
 
     @classmethod
     def update(cls, filters, **kwargs):
-        return tr_session.query(cls).filter_by(**filters).update(**kwargs)
+        with Tr_Session() as session:
+            return session.query(cls).filter_by(**filters).update(**kwargs)
 
     @classmethod
     def add(cls, **kwargs):
         input_oa_board_standard = cls(**kwargs)
-        tr_session.add(input_oa_board_standard)
-        tr_session.commit()
+        with Tr_Session() as session:
+            try:
+                session.add(input_oa_board_standard)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e
         return input_oa_board_standard
 
     @classmethod
     def get_count(cls, **filters) -> int:
-        query = tr_session.query(sa.func.count(inspect(cls).primary_key[0]))
-        for key, value in filters.items():
-            if isinstance(value, list):
-                query = query.filter(getattr(cls, key).in_(value))
-            else:
-                query = query.filter_by(**{key: value})
-        count = query.scalar()
-        return count
-    
+        with Tr_Session() as session:
+            query = session.query(sa.func.count(inspect(cls).primary_key[0]))
+            for key, value in filters.items():
+                if isinstance(value, list):
+                    query = query.filter(getattr(cls, key).in_(value))
+                else:
+                    query = query.filter_by(**{key: value})
+            count = query.scalar()
+            return count
+
     @classmethod
     def bulk_update(cls, update_mappings):
-        tr_session.bulk_update_mappings(cls, update_mappings)
-        tr_session.commit()
+        with Tr_Session() as session:
+            try:
+                session.bulk_update_mappings(cls, update_mappings)
+                session.commit()
+            except Exception as e:
+                session.rollback()
+                raise e

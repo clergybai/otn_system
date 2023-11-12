@@ -1,0 +1,3435 @@
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  overflow: hidden;
+  .navigation {
+    padding: 10px 10px 10px 20px;
+    min-width: 300px;
+    max-width: 300px;
+    /* height: 73%; */
+    height: 100%;
+    box-sizing: border-box;
+    user-select: none;
+    /* z-index: 2001; */
+    box-shadow: var(--box-shadow);
+    /* transform: translateX(-100%); */
+    /* transition: transform 0.5s ease; */
+    .menuBtn {
+      position: absolute;
+      top: 50%;
+      right: -30px;
+      transform: translate(0, -50%);
+      width: 30px;
+      height: 100px;
+      color: var(--white);
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      background-color: var(--theme-color);
+      box-shadow: var(--box-shadow);
+      cursor: pointer;
+    }
+    .searchBox {
+      position: relative;
+      // position: absolute;
+      // top: 0;
+      width: 100%;
+      height: 60px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      background-color: var(--white);
+      box-sizing: border-box;
+      input {
+        position: absolute;
+        padding: 0 40px 0 15px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 86%;
+        height: 60%;
+        font-size: 15px;
+        color: var(--black);
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+        background-color: #f5f7fc;
+        &:focus,
+        &:active {
+          border: none;
+          outline: none;
+        }
+        &::placeholder {
+          color: #989899;
+        }
+      }
+      // svg {
+      //   position: absolute;
+      //   top: 50%;
+      //   right: 13%;
+      //   transform: translate(0, -50%);
+      //   color: #989899;
+      //   cursor: pointer;
+      // }
+      .el-icon {
+        position: absolute;
+        padding: 0px;
+        top: 50%;
+        right: 10.5%;
+        font-size: 24px;
+        transform: translate(0, -49%);
+        color: #989899;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+    }
+    .el-scrollbar {
+      height: calc(100% - 60px);
+      box-sizing: border-box;
+      background-color: var(--white);
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      box-shadow: var(--box-shadow);
+    }
+    .dataEmpty {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      svg {
+        width: 50%;
+        height: 50%;
+      }
+      span {
+        color: var(--black);
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        box-sizing: border-box;
+      }
+    }
+  }
+  .navigation.IsActive {
+    transform: translateX(0);
+  }
+  .content {
+    padding: 10px 20px 10px 10px;
+    width: calc(100% - 250px);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    #container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      .systemDetail {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        // transform: translateX(-85%);
+        // opacity: 0.6;
+        border-radius: 8px;
+        border: 1px solid #eceff4;
+        background-color: rgba(76, 100, 242, 0.95);
+        box-shadow: var(--box-shadow);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+        align-items: flex-start;
+        justify-content: flex-start;
+        transition: transform 0.3s ease;
+        // &:hover {
+        //   transform: translateX(0%);
+        //   opacity: 1;
+        // }
+        cursor: default;
+        ul {
+          padding: 10px;
+          margin: 0;
+          list-style: none;
+          display: block;
+          min-width: 150px;
+          max-width: 300px;
+          max-height: 150px;
+          box-sizing: border-box;
+          overflow-anchor: none;
+          overflow-x: hidden;
+          overflow-y: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          &::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+          }
+          li {
+            width: 100%;
+            line-height: 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            box-sizing: border-box;
+            word-wrap: break-word;
+          }
+        }
+      }
+      .systemAbnormal {
+        padding: 15px 20px;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.05rem;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .zoomInOn {
+        position: absolute;
+        padding: 10px 5px;
+        top: 0;
+        right: 0;
+        width: 150px;
+        height: 60px;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        box-sizing: border-box;
+        .magnify,
+        .reduce {
+          width: 42%;
+          height: 100%;
+          background-color: transparent;
+          background-color: rgba(255, 255, 255, 0.8);
+          font-size: 28px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--theme-color);
+          border: 1px solid #eceff4;
+          border-radius: 4px;
+          cursor: pointer;
+          &:hover {
+            background-color: #f2f5fa;
+          }
+          svg {
+            width: 55%;
+            height: 90%;
+          }
+        }
+      }
+    }
+  }
+}
+
+ul.el-menu {
+  border: none;
+  width: 100%;
+  z-index: 0;
+}
+
+ul.el-menu .first_el-menu-item.el-menu-item {
+  // background-color: #edeffe;
+  background-color: #f5f7fc;
+  border-left: 4px solid var(--theme-color);
+  font-weight: bold;
+  color: var(--theme-color);
+  box-sizing: border-box;
+}
+
+.el-sub-menu li.el-menu-item,
+ul.el-menu li.el-menu-item.el-tooltip__trigger {
+  padding-left: 25px !important;
+  transition: none;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: content-box;
+  font-size: 16px;
+  border-left: 4px solid transparent;
+}
+
+.el-menu-item:hover {
+  /* background-color: #edeffe; */
+  background-color: #f5f7fc;
+}
+.el-menu-item.is-active {
+  /* background-color: #edeffe; */
+  background-color: #f5f7fc;
+  border-left: 4px solid var(--theme-color);
+  font-weight: bold;
+  color: var(--theme-color);
+  box-sizing: border-box;
+}
+
+.el-menu-item-group {
+  padding: 0;
+}
+
+// ---------------------------------------------------------------------
+/* 提示语Start */
+.prompt {
+  padding: 0 1%;
+  width: 100%;
+  font-size: 14px;
+  color: #989899;
+}
+/* 提示语End */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* ROADM主板卡详情START */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalMainRoadmBoardDetails {
+    width: 60%;
+    width: 620px;
+    height: 650px;
+    padding: 0 50px 20px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    .title {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      font-size: 24px;
+      color: var(--theme-color);
+      text-align: center;
+      line-height: 60px;
+    }
+    .graph {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 4px;
+      padding-bottom: 20px;
+      .graphContent {
+        width: 100%;
+        height: calc(100%);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        border-radius: 4px;
+        border: 2px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        .graphTitle {
+          width: 100%;
+          height: 50px;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          color: #333;
+        }
+        .contentMain {
+          padding: 16px 0;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          .mainLeft,
+          .mainRight {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
+            /* justify-content: space-between; */
+            .mainRouting,
+            .viceRouting {
+              position: relative;
+              position: relative;
+              height: 50%;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-evenly;
+              span.SubName {
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                transform: translateY(-50%);
+                font-size: 18px;
+                color: var(--black);
+                text-align: center;
+              }
+              .mainRoutingOne,
+              .mainRoutingTwo,
+              .viceRoutingOne,
+              .viceRoutingTwo {
+                position: relative;
+                width: 100%;
+                height: 40px;
+                hr {
+                  position: absolute;
+                  top: 39%;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 99%;
+                  border: 1.5px solid #91a1ff;
+                  background-color: #91a1ff;
+                }
+                img {
+                  position: absolute;
+                  top: 50%;
+                  left: 30%;
+                  transform: translateY(-50%);
+                  width: 65px;
+                  height: 60px;
+                  user-select: none;
+                  cursor: pointer;
+                }
+              }
+              .mainRoutingOne,
+              .viceRoutingOne {
+                &::after {
+                  content: "";
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 30px;
+                  height: 40px;
+                  font-size: 18px;
+                  color: #333;
+                  background: url("@/assets/arrow.png") no-repeat center;
+                  background-size: 100% 79%;
+                }
+              }
+              .mainRoutingTwo,
+              .viceRoutingTwo {
+                &::after {
+                  content: "";
+                  position: absolute;
+                  top: 50%;
+                  width: 30px;
+                  height: 40px;
+                  transform: translateY(-50%) rotate(180deg);
+                  font-size: 18px;
+                  color: #333;
+                  background: url("@/assets/arrow.png") no-repeat center;
+                  background-size: 100% 79%;
+                }
+              }
+            }
+            .mainRouting {
+              &::after {
+                content: attr(act-stand);
+                position: absolute;
+                top: 50%;
+                transform: translate(0%, -50%);
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--black);
+              }
+            }
+            .viceRouting {
+              &::after {
+                content: attr(act-stand);
+                position: absolute;
+                top: 50%;
+                transform: translate(0%, -50%);
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--black);
+              }
+            }
+          }
+          .mainLeft {
+            .mainRouting,
+            .viceRouting {
+              span.SubName {
+                left: -105%;
+              }
+              .mainRoutingOne,
+              .viceRoutingOne {
+                &::after {
+                  left: -30px;
+                }
+              }
+              .mainRoutingTwo,
+              .viceRoutingTwo {
+                &::after {
+                  left: -28px;
+                }
+              }
+            }
+            .mainRouting {
+              &::after {
+                left: 10%;
+              }
+            }
+            .viceRouting {
+              &::after {
+                left: 10%;
+              }
+            }
+            .pillars {
+              right: 5px;
+            }
+          }
+
+          .mainRight {
+            .mainRouting,
+            .viceRouting {
+              span.SubName {
+                right: -105%;
+              }
+              .mainRoutingOne,
+              .viceRoutingOne {
+                &::after {
+                  right: -28px;
+                }
+              }
+              .mainRoutingTwo,
+              .viceRoutingTwo {
+                &::after {
+                  right: -30px;
+                }
+              }
+            }
+            .mainRouting {
+              &::after {
+                right: 10%;
+              }
+            }
+            .viceRouting {
+              &::after {
+                right: 10%;
+              }
+            }
+            .pillars {
+              left: 5px;
+            }
+          }
+
+          .pillars {
+            width: 60px;
+            height: 100%;
+            border-radius: 4px;
+            background-color: #8696f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            span {
+              width: 20px;
+              line-height: 24px;
+              color: #fff;
+              font-size: 20px;
+              word-wrap: break-word;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ROADM主板卡详情END */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* OLP主板卡详情START */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalMainOlpBoardDetails {
+    width: 60%;
+    width: 620px;
+    height: 650px;
+    padding: 0 50px 20px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    .title {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      font-size: 24px;
+      color: var(--theme-color);
+      text-align: center;
+      line-height: 60px;
+    }
+    .graph {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 4px;
+      padding-bottom: 20px;
+      .graphContent {
+        width: 100%;
+        height: calc(100%);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        border-radius: 4px;
+        border: 2px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        .graphTitle {
+          width: 100%;
+          height: 50px;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          color: #333;
+        }
+        .contentMain {
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          .mainLeft,
+          .mainRight {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            .mainRouting,
+            .viceRouting {
+              position: relative;
+              height: 50%;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-evenly;
+              span.SubName {
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                transform: translateY(-50%);
+                font-size: 18px;
+                color: var(--black);
+                text-align: center;
+              }
+              .mainRoutingOne,
+              .mainRoutingTwo,
+              .viceRoutingOne,
+              .viceRoutingTwo {
+                position: relative;
+                width: calc(100% - 5px - 34px);
+                height: 40px;
+                hr {
+                  position: absolute;
+                  top: 39%;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 99%;
+                  border: 1.5px solid #91a1ff;
+                  background-color: #91a1ff;
+                }
+                img {
+                  position: absolute;
+                  top: 50%;
+                  left: 30%;
+                  width: 65px;
+                  height: 60px;
+                  user-select: none;
+                  cursor: pointer;
+                }
+                p {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  padding: 10px;
+                  user-select: none;
+                  cursor: pointer;
+                }
+              }
+              .mainRoutingOne,
+              .viceRoutingOne {
+                &::after {
+                  content: "";
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 30px;
+                  height: 40px;
+                  font-size: 18px;
+                  color: #333;
+                  background: url("@/assets/arrow.png") no-repeat center;
+                  background-size: 100% 79%;
+                }
+              }
+              .mainRoutingTwo,
+              .viceRoutingTwo {
+                &::after {
+                  content: "";
+                  position: absolute;
+                  top: 50%;
+                  width: 30px;
+                  height: 40px;
+                  transform: translateY(-50%) rotate(180deg);
+                  font-size: 18px;
+                  color: #333;
+                  background: url("@/assets/arrow.png") no-repeat center;
+                  background-size: 100% 79%;
+                }
+              }
+            }
+            .mainRouting {
+              &::after {
+                content: "主路由";
+                position: absolute;
+                top: 50%;
+                transform: translate(0%, -50%);
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--black);
+              }
+            }
+            .viceRouting {
+              &::after {
+                content: "备路由";
+                position: absolute;
+                top: 50%;
+                transform: translate(0%, -50%);
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--black);
+              }
+            }
+            .pillars {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 34px;
+              height: 90%;
+              border-radius: 4px;
+              background-color: #8696f7;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              span {
+                width: 20px;
+                line-height: 24px;
+                color: #fff;
+                font-size: 20px;
+                word-wrap: break-word;
+              }
+            }
+          }
+          .mainLeft {
+            .mainRouting,
+            .viceRouting {
+              align-items: flex-start;
+              span.SubName {
+                left: -105%;
+              }
+              .mainRoutingOne,
+              .viceRoutingOne {
+                &::after {
+                  left: -30px;
+                }
+                P {
+                  transform: translate(-90%, -50%);
+                  color: #fff;
+                }
+                img {
+                  transform: translateY(-50%);
+                }
+              }
+              .mainRoutingTwo,
+              .viceRoutingTwo {
+                &::after {
+                  left: -28px;
+                }
+                p {
+                  transform: translate(-50%, -50%);
+                  color: #fff;
+                }
+                img {
+                  transform: translateY(-50%);
+                }
+              }
+            }
+            .mainRouting {
+              &::after {
+                left: 10%;
+              }
+            }
+            .viceRouting {
+              &::after {
+                left: 10%;
+              }
+            }
+            .pillars {
+              right: 5px;
+            }
+          }
+          .mainRight {
+            .mainRouting,
+            .viceRouting {
+              align-items: flex-end;
+              span.SubName {
+                right: -105%;
+              }
+              .mainRoutingOne,
+              .viceRoutingOne {
+                &::after {
+                  right: -28px;
+                }
+                img {
+                  transform: translateY(-50%);
+                }
+              }
+              .mainRoutingTwo,
+              .viceRoutingTwo {
+                &::after {
+                  right: -30px;
+                }
+                img {
+                  transform: translateY(-50%);
+                }
+              }
+            }
+            .mainRouting {
+              &::after {
+                right: 10%;
+              }
+            }
+            .viceRouting {
+              &::after {
+                right: 10%;
+              }
+            }
+            .pillars {
+              left: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.contentLeft,
+.contentRight {
+  .main,
+  .standby {
+    position: relative;
+    height: 50%;
+  }
+}
+
+.contentStandby {
+  .standbyRight {
+    .pillars {
+      left: 5px;
+    }
+  }
+}
+
+/* OLP主板卡详情END */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* MUX2主板卡详情START */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalMainBoardDetails {
+    width: 60%;
+    width: 620px;
+    height: 650px;
+    padding: 0 50px 20px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    .title {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      font-size: 24px;
+      color: var(--theme-color);
+      text-align: center;
+      line-height: 60px;
+    }
+    .graph {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 4px;
+      padding-bottom: 20px;
+      .graphContent {
+        width: 100%;
+        height: calc(100%);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        border-radius: 4px;
+        border: 2px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        .graphTitle {
+          width: 100%;
+          height: 50px;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          color: #333;
+        }
+        .contentMain,
+        .contentStandby {
+          width: 100%;
+          height: 49%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          .mainLeft,
+          .mainRight,
+          .standbyLeft,
+          .standbyRight {
+            .pillars {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 34px;
+              height: 90%;
+              border-radius: 4px;
+              background-color: #8696f7;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              span {
+                width: 20px;
+                line-height: 24px;
+                color: #fff;
+                font-size: 20px;
+                word-wrap: break-word;
+              }
+            }
+            .mainRoutingOne,
+            .mainRoutingTwo,
+            .standbyRoutingOne,
+            .standbyRoutingTwo {
+              position: absolute;
+              width: calc(100% - 5px - 34px);
+              height: 40px;
+              hr {
+                position: absolute;
+                top: 39%;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 99%;
+                border: 1.5px solid #91a1ff;
+                background-color: #91a1ff;
+              }
+              img {
+                position: absolute;
+                top: 50%;
+                left: 30%;
+                width: 65px;
+                height: 60px;
+                user-select: none;
+                cursor: pointer;
+              }
+              p {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                padding: 10px;
+                user-select: none;
+                cursor: pointer;
+              }
+            }
+            .mainRoutingOne,
+            .standbyRoutingOne {
+              top: 15%;
+              p {
+                transform: translate(-90%, -50%);
+                color: #fff;
+              }
+              img {
+                transform: translateY(-50%);
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 30px;
+                height: 40px;
+                font-size: 18px;
+                color: #333;
+                background: url("@/assets/arrow.png") no-repeat center;
+                background-size: 100% 79%;
+              }
+            }
+            .mainRoutingTwo,
+            .standbyRoutingTwo {
+              bottom: 15%;
+              p {
+                transform: translate(-50%, -50%);
+                color: #fff;
+              }
+              img {
+                transform: translateY(-50%);
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                width: 30px;
+                height: 40px;
+                transform: translateY(-50%) rotate(180deg);
+                font-size: 18px;
+                color: #333;
+                background: url("@/assets/arrow.png") no-repeat center;
+                background-size: 100% 79%;
+              }
+            }
+          }
+          .mainRight,
+          .standbyRight {
+            .pillars {
+              left: 5px;
+            }
+            .mainRoutingOne,
+            .mainRoutingTwo,
+            .standbyRoutingOne,
+            .standbyRoutingTwo {
+              right: 0;
+            }
+            .mainRoutingOne,
+            .standbyRoutingOne {
+              &::after {
+                right: -15.5px;
+                right: -28px;
+              }
+            }
+            .mainRoutingTwo,
+            .standbyRoutingTwo {
+              &::after {
+                right: -15.5px;
+                right: -30px;
+              }
+            }
+            &::before {
+              left: auto;
+              right: 10%;
+            }
+          }
+          .mainLeft,
+          .standbyLeft {
+            .pillars {
+              right: 5px;
+            }
+            .mainRoutingOne,
+            .mainRoutingTwo,
+            .standbyRoutingOne,
+            .standbyRoutingTwo {
+              left: 0;
+            }
+            .mainRoutingOne,
+            .standbyRoutingOne {
+              &::after {
+                left: -30px;
+              }
+            }
+            .mainRoutingTwo,
+            .standbyRoutingTwo {
+              &::after {
+                left: -15.5px;
+                left: -28px;
+              }
+            }
+          }
+        }
+        .contentMain {
+          .mainLeft,
+          .mainRight {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            span.SubName {
+              position: absolute;
+              top: 50%;
+              width: 100%;
+              transform: translateY(-50%);
+              font-size: 18px;
+              color: var(--black);
+              text-align: center;
+            }
+            &::before {
+              /* 假数据Start */
+              content: "主路由";
+              position: absolute;
+              top: 50%;
+              transform: translate(0%, -50%);
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--black);
+            }
+          }
+          .mainLeft {
+            span.SubName {
+              left: -105%;
+            }
+            &::before {
+              left: 10%;
+            }
+          }
+          .mainRight {
+            span.SubName {
+              right: -105%;
+            }
+            &::before {
+              right: 10%;
+            }
+          }
+        }
+        .contentStandby {
+          .standbyLeft,
+          .standbyRight {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            span.SubName {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 100%;
+              font-size: 18px;
+              color: var(--black);
+              text-align: center;
+            }
+            &::before {
+              content: "备路由";
+              position: absolute;
+              top: 50%;
+              transform: translate(0%, -50%);
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--black);
+            }
+          }
+          .standbyLeft {
+            span.SubName {
+              left: -105%;
+            }
+            &::before {
+              left: 10%;
+            }
+          }
+          .standbyRight {
+            span.SubName {
+              right: -105%;
+            }
+            &::before {
+              right: 10%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* MUX2主板卡详情END */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* MUX主板卡详情 */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalMainMuxBoardDetails {
+    width: 60%;
+    width: 620px;
+    height: 400px;
+    padding: 0 50px 20px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    .title {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      font-size: 24px;
+      color: var(--theme-color);
+      text-align: center;
+      line-height: 60px;
+    }
+    .graph {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 4px;
+      padding-bottom: 20px;
+      .graphContent {
+        width: 100%;
+        height: calc(100%);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        border-radius: 4px;
+        border: 2px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        .graphTitle {
+          width: 100%;
+          height: 50px;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          color: #333;
+        }
+        .contentMain {
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          .mainLeft,
+          .mainRight {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            span.SubName {
+              position: absolute;
+              top: 50%;
+              width: 100%;
+              transform: translateY(-50%);
+              font-size: 18px;
+              color: var(--black);
+              text-align: center;
+            }
+            .pillars {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 34px;
+              height: 90%;
+              border-radius: 4px;
+              background-color: #8696f7;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              span {
+                width: 20px;
+                line-height: 24px;
+                color: #fff;
+                font-size: 20px;
+                word-wrap: break-word;
+              }
+            }
+            .mainRoutingOne,
+            .mainRoutingTwo {
+              position: absolute;
+              width: calc(100% - 5px - 34px);
+              height: 40px;
+              hr {
+                position: absolute;
+                top: 39%;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 99%;
+                border: 1.5px solid #91a1ff;
+                background-color: #91a1ff;
+              }
+              img {
+                position: absolute;
+                top: 50%;
+                left: 30%;
+                width: 65px;
+                height: 60px;
+                user-select: none;
+                cursor: pointer;
+              }
+              p {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                padding: 10px;
+                user-select: none;
+                cursor: pointer;
+              }
+            }
+            .mainRoutingOne {
+              top: 15%;
+              p {
+                transform: translate(-90%, -50%);
+                color: #fff;
+              }
+              img {
+                transform: translateY(-50%);
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 30px;
+                height: 40px;
+                font-size: 18px;
+                color: #333;
+                background: url("@/assets/arrow.png") no-repeat center;
+                background-size: 100% 79%;
+              }
+            }
+            .mainRoutingTwo {
+              bottom: 15%;
+              p {
+                transform: translate(-50%, -50%);
+                color: #fff;
+              }
+              img {
+                transform: translateY(-50%);
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                width: 30px;
+                height: 40px;
+                transform: translateY(-50%) rotate(180deg);
+                font-size: 18px;
+                color: #333;
+                background: url("@/assets/arrow.png") no-repeat center;
+                background-size: 100% 79%;
+              }
+            }
+            &::before {
+              /* 假数据Start */
+              content: "主路由";
+              position: absolute;
+              top: 50%;
+              left: 10%;
+              transform: translate(0%, -50%);
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--black);
+            }
+          }
+          .mainLeft {
+            &::before {
+              /* 假数据Start */
+              content: attr(act-stand);
+              position: absolute;
+              top: 50%;
+              left: 10%;
+              transform: translate(0%, -50%);
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--black);
+            }
+            span.SubName {
+              left: -105%;
+            }
+            .pillars {
+              right: 5px;
+            }
+            .mainRoutingOne,
+            .mainRoutingTwo {
+              left: 0;
+            }
+            .mainRoutingOne {
+              &::after {
+                left: -30px;
+              }
+            }
+            .mainRoutingTwo {
+              &::after {
+                left: -15.5px;
+                left: -28px;
+              }
+            }
+          }
+          .mainRight {
+            &::before {
+              /* 假数据Start */
+              content: attr(act-stand);
+              position: absolute;
+              top: 50%;
+              left: auto;
+              right: 10%;
+              transform: translate(0%, -50%);
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--black);
+            }
+            span.SubName {
+              right: -105%;
+            }
+            .pillars {
+              left: 5px;
+            }
+            .mainRoutingOne,
+            .mainRoutingTwo {
+              right: 0;
+            }
+            .mainRoutingOne {
+              &::after {
+                right: -15.5px;
+                right: -28px;
+              }
+            }
+            .mainRoutingTwo {
+              &::after {
+                right: -15.5px;
+                right: -30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* MUX2主板卡详情END */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* MUX单向详情 */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalMainMuxSingleBoardDetails {
+    width: 60%;
+    min-width: 350px;
+    height: 400px;
+    padding: 0 40px 20px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    .title {
+      width: 100%;
+      height: 60px;
+      box-sizing: border-box;
+      font-size: 24px;
+      color: var(--theme-color);
+      text-align: center;
+      line-height: 60px;
+    }
+    .graph {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 4px;
+      padding-bottom: 20px;
+      .graphContent {
+        width: 100%;
+        height: calc(100%);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        border-radius: 4px;
+        border: 2px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        .graphTitle {
+          width: 100%;
+          height: 50px;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          color: #333;
+        }
+        .contentMain {
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          .mainRight {
+            position: relative;
+            width: 80%;
+            height: 100%;
+            margin: 0 auto;
+            span.SubName {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 50%;
+              transform: translate(150%, -50%);
+              font-size: 18px;
+              color: var(--black);
+              text-align: center;
+            }
+            .pillars {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 50px;
+              height: 90%;
+              border-radius: 4px;
+              background-color: #8696f7;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              span {
+                width: 20px;
+                line-height: 24px;
+                color: #fff;
+                font-size: 20px;
+                word-wrap: break-word;
+              }
+            }
+            .mainRoutingOne,
+            .mainRoutingTwo {
+              position: absolute;
+              width: calc(100% - 5px);
+              height: 40px;
+              hr {
+                position: absolute;
+                top: 50%;
+                transform: translate(50px, -50%);
+                width: calc(99% - 5px);
+                border: 1.5px solid #91a1ff;
+                background-color: #91a1ff;
+              }
+              img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 65px;
+                height: 60px;
+                user-select: none;
+                cursor: pointer;
+              }
+              p {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                padding: 10px;
+                user-select: none;
+                cursor: pointer;
+              }
+            }
+            .mainRoutingOne {
+              top: 15%;
+              p {
+                transform: translate(-90%, -50%);
+                color: #fff;
+              }
+              img {
+                transform: translate(-50%, -50%);
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: calc(100% + 40px);
+                transform: translateY(-50%);
+                width: 30px;
+                height: 40px;
+                font-size: 18px;
+                color: #333;
+                background: url("@/assets/arrow.png") no-repeat center;
+                background-size: 100% 79%;
+              }
+            }
+            .mainRoutingTwo {
+              bottom: 15%;
+              p {
+                transform: translate(-50%, -50%);
+                color: #fff;
+              }
+              img {
+                transform: translate(-50%, -50%);
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: calc(100% + 40px);
+                width: 30px;
+                height: 40px;
+                transform: translateY(-50%) rotate(180deg);
+                font-size: 18px;
+                color: #333;
+                background: url("@/assets/arrow.png") no-repeat center;
+                background-size: 100% 79%;
+              }
+            }
+          }
+          .mainRight {
+            span.SubName {
+              right: -105%;
+            }
+            .pillars {
+              left: 5px;
+            }
+            .mainRoutingOne,
+            .mainRoutingTwo {
+              right: 0;
+            }
+            .mainRoutingOne {
+              &::after {
+                right: -15.5px;
+                right: -28px;
+              }
+            }
+            .mainRoutingTwo {
+              &::after {
+                right: -15.5px;
+                right: -30px;
+              }
+            }
+            &::before {
+              left: auto;
+              right: 10%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* MUX单向详情END */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* 光放站板卡详情SATRT 前置 */
+.modalLightLetStandBoardCardBeforeDetails {
+  width: 100%;
+  height: 800px;
+  margin: 0;
+  padding: 0;
+  .topo {
+    position: relative;
+    width: 100%;
+    height: 35%;
+    /* height: 270px; */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    .boardCard {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0 25% 0 16%;
+      justify-content: center;
+      .img {
+        position: relative;
+        min-width: 80px;
+        height: 180%;
+        margin-left: calc(50px + 25px);
+        img {
+          width: 100%;
+          height: 100%;
+          /* transform: rotate(270deg); */
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          right: calc(-95%);
+          top: 50%;
+          width: 100%;
+          height: 4px;
+          border: none;
+          background-color: #91a1ff;
+          transform: translate(0, -50%);
+        }
+      }
+      .cardIN {
+        position: relative;
+        min-width: 60px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--theme-color);
+        border-radius: 8px;
+        border: 3px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -53px;
+          transform: translateY(-50%);
+          width: 50px;
+          height: 40px;
+          font-size: 18px;
+          color: #333;
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 100%;
+        }
+      }
+      .cardExternalVOA {
+        position: relative;
+        min-width: 50px;
+        height: 30px;
+        border-radius: 4px;
+        border: 3px solid #6d81f4;
+        background-color: #f6f7ff;
+        // margin-left: calc(50px + 20px);
+        margin-left: calc(40px + 20px);
+        span {
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          transform: translate(-50%, 0);
+          white-space: nowrap;
+          color: #91a1ff;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          left: calc(-120% - 3px);
+          top: 50%;
+          width: 120%;
+          height: 4px;
+          border: none;
+          background-color: #91a1ff;
+          transform: translate(0, -50%);
+        }
+      }
+      .cardVOA {
+        position: relative;
+        min-width: 50px;
+        height: 30px;
+        border-radius: 4px;
+        border: 3px solid #6d81f4;
+        background-color: #f6f7ff;
+        margin-left: calc(50px + 10px);
+        span {
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          white-space: nowrap;
+          transform: translate(-50%, 0);
+          color: #91a1ff;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          left: calc(-120% - 3px);
+          top: 50%;
+          width: 120%;
+          height: 4px;
+          border: none;
+          background-color: #91a1ff;
+          transform: translate(0, -50%);
+        }
+        &::before {
+          position: absolute;
+          content: "";
+          right: calc(-150% - 3px);
+          top: 50%;
+          width: 150%;
+          height: 100%;
+          transform: translate(0, -50%);
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 140%;
+        }
+      }
+      .cardOUT {
+        position: relative;
+        min-width: 60px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--theme-color);
+        border-radius: 8px;
+        border: 3px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        margin-left: calc(50px * 2 + 25px);
+        &::after {
+          position: absolute;
+          content: "";
+          // left: calc(-150% - 3px);
+          left: calc(-120% - 3px);
+          // top: 50%;
+          top: 48%;
+          width: 120%;
+          height: 100%;
+          transform: translate(0, -49.5%);
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 125%;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: -53px;
+          transform: translateY(-50%);
+          width: 50px;
+          height: 40px;
+          font-size: 18px;
+          color: #333;
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 100%;
+        }
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-55%, -50%);
+      width: 300px;
+      height: 150px;
+      border-radius: 4px;
+      border: 3px dashed var(--theme-color);
+      background-color: #f6f7ff;
+      z-index: -1;
+    }
+  }
+  .table {
+    width: 100%;
+    height: 65%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .tableOne {
+      width: 55%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 1% 0% 5% 10%;
+      ul {
+        width: 60%;
+        height: 100%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        li {
+          position: relative;
+          width: 100%;
+          flex: 1;
+          border: 2px solid #8394f8;
+          box-sizing: border-box;
+          border-radius: 8px;
+          margin-top: 8px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          .title,
+          .value,
+          .titleGroup,
+          .valueGroup {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+          }
+          .title {
+            border-right: 2px solid #dce0fa;
+          }
+          .titleGroup {
+            border-right: 2px solid #dce0fa;
+          }
+          .titleGroup,
+          .valueGroup {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            .titleOne,
+            .titleTwo,
+            .valueOne,
+            .valueTwo {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .titleOne,
+            .valueOne {
+              border-bottom: 2px solid #dce0fa;
+            }
+          }
+          &:nth-child(1) {
+            margin-top: 0;
+          }
+          &:nth-child(1) .Line {
+            position: absolute;
+            top: -115%;
+            right: 15%;
+            transform: translate(-15%, 0);
+            width: 30%;
+            height: 135%;
+            border: none;
+            border-top: 2px solid #f28863;
+            border-right: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              right: -6.5px;
+              bottom: 0;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+            &::before {
+              content: "";
+              position: absolute;
+              // top: calc(-108% - 2px);
+              top: calc(-107% - 2px);
+              // left: -35%;
+              left: -28%;
+              transform: translate(-1%, 0%);
+              width: 35%;
+              height: 108%;
+              border: 2px solid #f28863;
+              border-top-left-radius: 2px;
+              border-right: none;
+              border-top: none;
+            }
+          }
+          &:nth-child(2) .Line {
+            position: absolute;
+            top: -365%;
+            right: 0%;
+            transform: translate(-15%, 0);
+            width: 50%;
+            height: 385%;
+            border: none;
+            border-right: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              right: -6.5px;
+              bottom: 0;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(3) .Line {
+            position: absolute;
+            top: -485%;
+            right: -23%;
+            transform: translate(-10%, 0);
+            width: 22%;
+            height: 535%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(4) .Line {
+            position: absolute;
+            top: -615.5%;
+            right: -39.2%;
+            transform: translate(-9%, 0);
+            width: 37%;
+            height: 665%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(5) .Line {
+            position: absolute;
+            top: -730%;
+            right: -60.5%;
+            transform: translate(-10%, 0);
+            width: 56%;
+            height: 780%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(6) .Line {
+            position: absolute;
+            top: -852.5%;
+            right: -81.3%;
+            transform: translate(-10%, 0);
+            width: 75%;
+            height: 902%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+        }
+      }
+    }
+    .tableTwo {
+      width: 45%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 1% 5% 5% 8%;
+      .tableData {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #8394f8;
+        border-radius: 10px;
+        padding: 1px;
+        .tableDataLine {
+          position: absolute;
+          content: "";
+          top: -49%;
+          left: -75%;
+          transform: translate(30%, 0);
+          width: 95%;
+          height: 52%;
+          border: 2px solid #f39372;
+          border-top-right-radius: 4px;
+          border-bottom: none;
+          border-left: none;
+          &::after {
+            position: absolute;
+            content: "";
+            right: -6.5px;
+            bottom: 0;
+            width: 6.5px;
+            height: 6.5px;
+            background-color: #fff;
+            border: 2px solid #f39372;
+            border-radius: 50px;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          }
+        }
+        .oaBoardType,
+        .slot,
+        .channelNumber,
+        .troubleCount {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          border-bottom: 2px solid #dce0fa;
+          .dataTitle {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border-right: 2px solid #dce0fa;
+          }
+          .dataValue {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            place-items: center;
+            box-sizing: border-box;
+          }
+        }
+        .oaBoardType {
+          height: 16%;
+          box-sizing: border-box;
+        }
+        .slot {
+          height: 18%;
+        }
+        .channelNumber {
+          height: 16%;
+          box-sizing: border-box;
+        }
+        .troubleCount {
+          height: 16%;
+          box-sizing: border-box;
+        }
+        .direction {
+          width: 100%;
+          height: calc(100% - 16% - 18% - 16% - 16%);
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          .titleGroup {
+            box-sizing: border-box;
+            width: 40%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            .mainGroup {
+              width: 60%;
+              height: 100%;
+              border-right: 2px solid #dce0fa;
+              box-sizing: border-box;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .viceGroup {
+              width: 40%;
+              height: 100%;
+              border-right: 2px solid #dce0fa;
+              box-sizing: border-box;
+              display: flex;
+              flex-direction: column;
+              flex-wrap: nowrap;
+              span {
+                width: 100%;
+                height: 50%;
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &:nth-of-type(1) {
+                  border-bottom: 2px solid #dce0fa;
+                }
+              }
+            }
+          }
+          .valueGroup {
+            box-sizing: border-box;
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            .valueClosed,
+            .valueHair {
+              width: 100%;
+              height: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .valueClosed {
+              border-bottom: 2px solid #dce0fa;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 光放站板卡详情END */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* 光放站板卡详情SATRT 后置 */
+.modalLightLetStandBoardCardAfterDetails {
+  width: 100%;
+  height: 800px;
+  margin: 0;
+  padding: 0;
+  .topo {
+    position: relative;
+    width: 100%;
+    height: 35%;
+    /* height: 270px; */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    .boardCard {
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0 25% 0 16%;
+      justify-content: center;
+      .img {
+        position: relative;
+        min-width: 80px;
+        height: 180%;
+        margin-left: calc(60px + 25px);
+        box-sizing: border-box;
+        img {
+          width: 100%;
+          height: 100%;
+          /* transform: rotate(270deg); */
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          right: calc(-100% + 3px);
+          top: 50%;
+          width: 100%;
+          height: 4px;
+          border: none;
+          background-color: #91a1ff;
+          transform: translate(0, -50%);
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: calc(-90px + 3px);
+          transform: translateY(-50%);
+          width: 90px;
+          height: 40px;
+          font-size: 18px;
+          color: #333;
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 100%;
+        }
+      }
+      .cardIN {
+        position: relative;
+        min-width: 60px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--theme-color);
+        border-radius: 8px;
+        border: 3px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -53px;
+          transform: translateY(-50%);
+          width: 50px;
+          height: 40px;
+          font-size: 18px;
+          color: #333;
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 100%;
+        }
+      }
+      .cardExternalVOA {
+        position: relative;
+        min-width: 50px;
+        height: 30px;
+        border-radius: 4px;
+        border: 3px solid #6d81f4;
+        background-color: #f6f7ff;
+        margin-left: calc(50px + 20px);
+        span {
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          transform: translate(-50%, 0);
+          white-space: nowrap;
+          color: #91a1ff;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          left: calc(-120% - 3px);
+          top: 50%;
+          width: 120%;
+          height: 4px;
+          border: none;
+          background-color: #91a1ff;
+          transform: translate(0, -50%);
+        }
+      }
+      .cardVOA {
+        position: relative;
+        min-width: 60px;
+        height: 40px;
+        border-radius: 4px;
+        border: 3px solid #6d81f4;
+        background-color: #f6f7ff;
+        margin-left: calc(60px + 10px);
+        box-sizing: border-box;
+        span {
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          white-space: nowrap;
+          transform: translate(-50%, 0);
+          color: #91a1ff;
+        }
+        &::before {
+          position: absolute;
+          content: "";
+          right: calc(-230% - 3px);
+          top: 50%;
+          width: 230%;
+          height: 90%;
+          transform: translate(0, -50%);
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 140%;
+          z-index: 1;
+        }
+      }
+      .cardOUT {
+        position: relative;
+        min-width: 60px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--theme-color);
+        border-radius: 8px;
+        border: 3px dashed var(--theme-color);
+        background-color: #f6f7ff;
+        margin-left: calc(50px * 2 + 25px);
+        z-index: 1;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: -53px;
+          transform: translateY(-50%);
+          width: 50px;
+          height: 40px;
+          font-size: 18px;
+          color: #333;
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 100%;
+        }
+      }
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-55%, -50%);
+      width: 300px;
+      height: 150px;
+      border-radius: 4px;
+      border: 3px dashed var(--theme-color);
+      background-color: #f6f7ff;
+      z-index: -1;
+    }
+  }
+  .table {
+    width: 100%;
+    height: 65%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .tableOne {
+      width: 55%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 1% 0% 5% 10%;
+      ul {
+        width: 60%;
+        height: 100%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        li {
+          position: relative;
+          width: 100%;
+          flex: 1;
+          border: 2px solid #8394f8;
+          box-sizing: border-box;
+          border-radius: 8px;
+          margin-top: 8px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          .title,
+          .value,
+          .titleGroup,
+          .valueGroup {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+          }
+          .title {
+            border-right: 2px solid #dce0fa;
+          }
+          .titleGroup {
+            border-right: 2px solid #dce0fa;
+          }
+          .titleGroup,
+          .valueGroup {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            .titleOne,
+            .titleTwo,
+            .valueOne,
+            .valueTwo {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .titleOne,
+            .valueOne {
+              border-bottom: 2px solid #dce0fa;
+            }
+          }
+          &:nth-child(1) {
+            margin-top: 0;
+          }
+          &:nth-child(1) .Line {
+            position: absolute;
+            top: -115%;
+            right: 15%;
+            transform: translate(-15%, 0);
+            width: 30%;
+            height: 135%;
+            border: none;
+            border-top: 2px solid #f28863;
+            border-right: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              right: -6.5px;
+              bottom: 0;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+            &::before {
+              content: "";
+              position: absolute;
+              // top: calc(-145% - 2px);
+              top: calc(-105% - 2px);
+              left: -45%;
+              transform: translate(-1%, 0%);
+              width: 45%;
+              // height: 145%;
+              height: 105%;
+              border: 2px solid #f28863;
+              border-top-left-radius: 2px;
+              border-right: none;
+              border-top: none;
+            }
+          }
+          &:nth-child(2) .Line {
+            position: absolute;
+            // top: -430%;
+            top: -349%;
+            right: 0%;
+            transform: translate(-20%, 0);
+            width: 50%;
+            // height: 460%;
+            height: 380%;
+            border: none;
+            border-right: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              right: -6.5px;
+              bottom: 0;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(3) .Line {
+            position: absolute;
+            // top: -545%;
+            top: -488%;
+            right: -68%;
+            transform: translate(-10%, 0);
+            width: 64%;
+            // height: 595%;
+            height: 539%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(4) .Line {
+            position: absolute;
+            // top: -680%;
+            top: -612%;
+            right: -8%;
+            transform: translate(-9%, 0);
+            width: 9%;
+            // height: 730%;
+            height: 662%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(5) .Line {
+            position: absolute;
+            // top: -780%;
+            top: -727%;
+            right: -28.5%;
+            transform: translate(-10%, 0);
+            width: 28%;
+            // height: 830%;
+            height: 776%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(6) .Line {
+            position: absolute;
+            // top: -928.5%;
+            top: -850%;
+            right: -51.3%;
+            transform: translate(-10%, 0);
+            width: 48%;
+            // height: 980%;
+            height: 898%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+          }
+          &:nth-child(7) .Line {
+            position: absolute;
+            top: -928.5%;
+            right: -95.3%;
+            transform: translate(-10%, 0);
+            width: 88%;
+            height: 980%;
+            border: none;
+            border-right: 2px solid #f28863;
+            border-bottom: 2px solid #f28863;
+            &::after {
+              position: absolute;
+              content: "";
+              left: -6.5px;
+              bottom: -6.5px;
+              width: 6.5px;
+              height: 6.5px;
+              background-color: #fff;
+              border: 2px solid #f39372;
+              border-radius: 50px;
+              box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+            }
+            &::before {
+              content: "";
+              position: absolute;
+              top: -65px;
+              right: -240px;
+              transform: translate(-10%, 0);
+              width: 60%;
+              height: 63px;
+              border: none;
+              border-top: 2px solid #f28863;
+              border-right: 2px solid #f28863;
+              border-bottom: 2px solid #f28863;
+            }
+          }
+        }
+      }
+    }
+    .tableTwo {
+      width: 45%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 1% 5% 5% 8%;
+      .tableData {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #8394f8;
+        border-radius: 10px;
+        padding: 1px;
+        .tableDataLine {
+          position: absolute;
+          content: "";
+          top: -49%;
+          left: -75%;
+          transform: translate(30%, 0);
+          width: 95%;
+          height: 52%;
+          border: 2px solid #f39372;
+          border-top-right-radius: 4px;
+          border-bottom: none;
+          border-left: none;
+          &::after {
+            position: absolute;
+            content: "";
+            right: -6.5px;
+            bottom: 0;
+            width: 6.5px;
+            height: 6.5px;
+            background-color: #fff;
+            border: 2px solid #f39372;
+            border-radius: 50px;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.55);
+          }
+        }
+        .oaBoardType,
+        .slot,
+        .channelNumber,
+        .troubleCount {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          border-bottom: 2px solid #dce0fa;
+          .dataTitle {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            border-right: 2px solid #dce0fa;
+          }
+          .dataValue {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            place-items: center;
+            box-sizing: border-box;
+          }
+        }
+        .oaBoardType {
+          height: 16%;
+          box-sizing: border-box;
+        }
+        .slot {
+          height: 18%;
+        }
+        .channelNumber {
+          height: 16%;
+          box-sizing: border-box;
+        }
+        .troubleCount {
+          height: 16%;
+          box-sizing: border-box;
+        }
+        .direction {
+          width: 100%;
+          height: calc(100% - 16% - 18% - 16% - 16%);
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          .titleGroup {
+            box-sizing: border-box;
+            width: 40%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            .mainGroup {
+              width: 60%;
+              height: 100%;
+              border-right: 2px solid #dce0fa;
+              box-sizing: border-box;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .viceGroup {
+              width: 40%;
+              height: 100%;
+              border-right: 2px solid #dce0fa;
+              box-sizing: border-box;
+              display: flex;
+              flex-direction: column;
+              flex-wrap: nowrap;
+              span {
+                width: 100%;
+                height: 50%;
+                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &:nth-of-type(1) {
+                  border-bottom: 2px solid #dce0fa;
+                }
+              }
+            }
+          }
+          .valueGroup {
+            box-sizing: border-box;
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            .valueClosed,
+            .valueHair {
+              width: 100%;
+              height: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .valueClosed {
+              border-bottom: 2px solid #dce0fa;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 光放站板卡详情END */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* 光缆详情START */
+.modalCableDetails {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  &::after {
+    position: absolute;
+    content: "";
+    left: 5%;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 23%;
+    height: 75%;
+    background-color: #f6f7ff;
+    border: 2px dashed var(--theme-color);
+    border-radius: 8px;
+    z-index: -1;
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    right: 5%;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 23%;
+    height: 75%;
+    background-color: #f6f7ff;
+    border: 2px dashed var(--theme-color);
+    border-radius: 8px;
+    z-index: -1;
+  }
+  .opticalCableSignalling,
+  .opticalCableReception {
+    .fiberOrientation {
+      position: absolute;
+      padding: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 73%;
+      height: 30%;
+      display: flex;
+      align-items: center;
+      .contentIn,
+      .contentOut {
+        position: absolute;
+        padding: 1px;
+        top: 0;
+        width: 25%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        border-radius: 8px;
+        overflow: hidden;
+        box-sizing: border-box;
+      }
+      .contentIn {
+        left: 60px;
+        background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.04),
+          rgba(0, 0, 0, 0.03),
+          rgba(0, 0, 0, 0.02),
+          rgba(0, 0, 0, 0.01)
+        );
+        span {
+          padding: 2% 5%;
+          width: 100%;
+          height: 50%;
+          font-size: 16px;
+          text-align: left;
+          white-space: nowrap;
+          letter-spacing: 0.5px;
+          box-sizing: border-box;
+        }
+      }
+      .contentOut {
+        right: 60px;
+        background-image: linear-gradient(
+          to left,
+          rgba(0, 0, 0, 0.04),
+          rgba(0, 0, 0, 0.03),
+          rgba(0, 0, 0, 0.02),
+          rgba(0, 0, 0, 0.01)
+        );
+        span {
+          padding: 2% 5%;
+          width: 100%;
+          height: 50%;
+          font-size: 16px;
+          text-align: right;
+          white-space: nowrap;
+          letter-spacing: 0.5px;
+          box-sizing: border-box;
+        }
+      }
+      hr {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 82%;
+        border: 2px solid #91a1ff;
+        background-color: #91a1ff;
+      }
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 30px;
+        color: #91a1ff;
+      }
+      img {
+        &:nth-of-type(1),
+        &:nth-of-type(2) {
+          position: absolute;
+          width: 10%;
+          height: 100%;
+        }
+        &:nth-of-type(1) {
+          left: -1%;
+        }
+        &:nth-of-type(2) {
+          right: -1%;
+        }
+      }
+    }
+  }
+  .opticalCableSignalling {
+    position: relative;
+    width: 100%;
+    height: 46%;
+    span.subName {
+      padding: 0.8% 0%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 50px;
+      transform: translateX(-50%);
+      font-size: 24px;
+      text-align: center;
+      color: var(--theme-color);
+      box-sizing: border-box;
+      border-radius: 8px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    span.subName:hover,
+    span.subName:active {
+      animation: fiberNameDetails 0.35s 1 0.5s forwards ease;
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    }
+    .fiberOrientation {
+      bottom: 0;
+      img {
+        &:nth-of-type(1),
+        &:nth-of-type(2) {
+          transform: rotate(0deg);
+        }
+      }
+    }
+    .opticalCableReceive {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 90%;
+      height: 50%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      box-sizing: border-box;
+      .send,
+      .receive {
+        width: 35%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        .sendTitle {
+          padding: 4px 8px;
+          width: 74%;
+          height: 80%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          box-sizing: border-box;
+          font-size: 18px;
+          overflow: hidden;
+          text-align: center;
+        }
+        .sendVal {
+          padding-bottom: 8px;
+          width: 26%;
+          height: 100%;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          box-sizing: border-box;
+          color: #91a1ff;
+        }
+      }
+      .sendData {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        border-radius: 10px;
+        overflow: hidden;
+        .longLeather {
+          width: 35%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          background-color: #f5f7fc;
+          border-right: 2px solid #fff;
+          .longLeatherTitle,
+          .longLeatherVal {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+        .loss {
+          width: 65%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          .lossTitle,
+          .lossVal {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f5f7fc;
+          }
+          .lossTitle {
+            border-bottom: 2px solid #fff;
+            span {
+              &:nth-of-type(1) {
+                flex: 1.35;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              &:nth-of-type(2) {
+                flex: 1.5;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+          .lossVal {
+            span {
+              &:nth-of-type(1) {
+                flex: 1.35;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              &:nth-of-type(2) {
+                flex: 1.5;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+        }
+      }
+    }
+    @keyframes fiberNameDetails {
+      100% {
+        padding: 1% 2%;
+        width: 70%;
+        height: max-content;
+        max-height: 100%;
+        min-height: 50px;
+        line-height: 32px;
+        transform-origin: 50% 0;
+        transform: translateX(-50%) scale(1);
+        text-overflow: none;
+        font-size: 20px;
+        white-space: pre-wrap;
+        background-color: #f6f7ff;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        z-index: 1;
+        overflow-anchor: none;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  .opticalCableReception {
+    position: relative;
+    width: 100%;
+    height: 46%;
+    .fiberOrientation {
+      top: 0;
+      svg {
+        transform: translate(-50%, -50%) rotate(180deg);
+      }
+      img {
+        &:nth-of-type(1),
+        &:nth-of-type(2) {
+          // transform: rotate(180deg);
+        }
+      }
+    }
+    .fiberOpticCableToSend {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 44%;
+      height: 50%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      padding: 5px 0;
+      .send,
+      .receive {
+        width: 22%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        .sendVal {
+          padding-top: 8px;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          box-sizing: border-box;
+          color: #91a1ff;
+        }
+      }
+      .send {
+        .sendVal {
+          padding-left: 20px;
+        }
+      }
+      .receive {
+        .sendVal {
+          padding-right: 20px;
+        }
+      }
+      .sendData {
+        width: 56%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        border-radius: 10px;
+        overflow: hidden;
+        .longLeather {
+          width: 35%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          background-color: #f5f7fc;
+          border-right: 2px solid #fff;
+          .longLeatherTitle,
+          .longLeatherVal {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+        .loss {
+          width: 65%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          .lossTitle,
+          .lossVal {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f5f7fc;
+          }
+          .lossTitle {
+            border-bottom: 2px solid #fff;
+            span {
+              &:nth-of-type(1) {
+                flex: 1.35;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              &:nth-of-type(2) {
+                flex: 1.5;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+          .lossVal {
+            span {
+              &:nth-of-type(1) {
+                flex: 1.35;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+              &:nth-of-type(2) {
+                flex: 1.5;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .opticalCableTitle {
+    width: 100%;
+    height: 8%;
+    color: #f26374;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 光缆详情END */
+// ---------------------------------------------------------------------
+
+// ---------------------------------------------------------------------
+/* 光放站详情START */
+.Content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .modalLightLetStandDetails {
+    width: 100%;
+    width: 400px;
+    margin: 0 auto;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .title {
+      width: 100%;
+      height: 40px;
+      font-size: 22px;
+      color: var(--theme-color);
+      text-align: center;
+    }
+    .vice {
+      position: relative;
+      width: 80%;
+      height: 80%;
+      border: 3px solid #91a1ff;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      span {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 80%;
+        font-size: 18px;
+        color: var(--black);
+        text-align: center;
+        &:nth-of-type(1) {
+          left: -82%;
+        }
+        &:last-of-type {
+          right: -82%;
+        }
+      }
+      .viceRoutingOne,
+      .viceRoutingTwo {
+        position: relative;
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-around;
+        hr {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 99%;
+          border: 1.5px solid #91a1ff;
+          background-color: #91a1ff;
+        }
+        div.oa_fingerprint {
+          position: relative;
+          width: 65px;
+          height: 60px;
+          img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            user-select: none;
+            cursor: pointer;
+          }
+          p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            color: #333;
+            padding: 10px;
+            user-select: none;
+            cursor: pointer;
+          }
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: calc(-30px - 3px);
+          width: 30px;
+          height: 40px;
+          font-size: 18px;
+          color: #333;
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 79%;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: calc(-30px - 3px);
+          width: 30px;
+          height: 40px;
+          font-size: 18px;
+          color: #333;
+          background: url("@/assets/arrow.png") no-repeat center;
+          background-size: 100% 79%;
+        }
+      }
+      .viceRoutingOne {
+        div.oa_fingerprint {
+          img {
+            transform: translate(-40%, -50%);
+          }
+        }
+        &::after,
+        &::before {
+          transform: translateY(-50%) rotate(0deg);
+        }
+      }
+      .viceRoutingTwo {
+        div.oa_fingerprint {
+          img {
+            transform: translate(-60%, -50%);
+          }
+        }
+        &::after,
+        &::before {
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+/* 光放站详情END */
+// ---------------------------------------------------------------------

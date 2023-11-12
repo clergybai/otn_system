@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 import uuid
-from webapi.database import EmptyModel
-from webapi.database import db_trnas_session
+from common.database import EmptyModel
+from common.database import Tr_Session
 
 import logging
 logging.basicConfig()
@@ -85,51 +85,61 @@ class OrderList(EmptyModel):
 
     @classmethod
     def get_orders(cls, **kwargs):
-        return db_trnas_session.query(cls).filter_by(**kwargs).all()
+        with Tr_Session() as session:
+            return session.query(cls).filter_by(**kwargs).all()
 
     @classmethod
     def all(cls):
-        return db_trnas_session.query(cls).all()
+        with Tr_Session() as session:
+            return session.query(cls).all()
+
+    @classmethod
+    def all_for_filter(cls):
+        with Tr_Session() as session:
+            return session.query(
+                cls.city,
+                cls.district_county,
+                cls.sys_name).distinct(
+                    cls.district_county,
+                    cls.city,
+                    cls.sys_name).all()
+
+    @classmethod
+    def all_for_filter_later_part(cls):
+        with Tr_Session() as session:
+            return session.query(
+                cls.network_level,
+                cls.risk_level,
+                cls.is_top_end,
+                cls.is_send_top).distinct(
+                    cls.network_level,
+                    cls.risk_level,
+                    cls.is_top_end,
+                    cls.is_send_top).all()
 
     @classmethod
     def get_orders_by_time(cls, start, end, **kwargs):
-        return db_trnas_session.query(cls).\
-            filter_by(**kwargs).\
-            filter(cls.timestamp.between(start, end)).\
-            order_by(cls.timestamp).all()
+        with Tr_Session() as session:
+            return session.query(cls).\
+                filter_by(**kwargs).\
+                filter(cls.timestamp.between(start, end)).\
+                order_by(cls.timestamp).all()
 
     @classmethod
-    def get_filter(cls, zone_authens, **kwargs):
-        query = db_trnas_session.query(
-            cls.city,
-            cls.district_county,
-            cls.sys_name,
-            cls.network_level,
-            cls.risk_level).distinct(
-                cls.district_county,
+    def get_filter(cls, **kwargs):
+        with Tr_Session() as session:
+            query = session.query(
                 cls.city,
+                cls.district_county,
                 cls.sys_name,
                 cls.network_level,
-                cls.risk_level)
-
-        cities = [key for key, val in zone_authens.items()]
-        if kwargs.get('city') is not None:
-            val_cities = list(filter(lambda x: x in cities, kwargs.get('city')))
-        else:
-            val_cities = cities
-        query = query.filter(cls.city.in_(val_cities))
-
-        for key, val in kwargs.items():
-            if key == "district_county":
-                query = query.filter(cls.district_county.in_(val))
-            elif key == 'sys_name':
-                query = query.filter(cls.sys_name.in_(val))
-            elif key == 'network_level':
-                query = query.filter(cls.network_level.in_(val))
-            elif key == 'risk_level':
-                query = query.filter(cls.risk_level.in_(val))
-
-        return query.all()
+                cls.risk_level).distinct(
+                    cls.district_county,
+                    cls.city,
+                    cls.sys_name,
+                    cls.network_level,
+                    cls.risk_level)
+            return query.all()
 
     @classmethod
     def get_trouble_by_filter(cls, **kwargs):
@@ -155,43 +165,52 @@ class OrderList(EmptyModel):
             order_id = param.get('order_id')
 
         # query = db_trnas_session.query(cls).filter(cls.is_history == 0)
-        query = db_trnas_session.query(cls)
+        with Tr_Session() as session:
+            query = session.query(cls)
 
-        if order_id and len(order_id) > 0:
-            query = query.filter(cls.order_id.like('%'+order_id+'%'))
-        if start_time:
-            query = query.filter(cls.discover_time >= start_time)
-        if end_time:
-            query = query.filter(cls.discover_time < end_time)
+            if order_id and len(order_id) > 0:
+                query = query.filter(cls.order_id.like('%'+order_id+'%'))
+            if start_time:
+                query = query.filter(cls.discover_time >= start_time)
+            if end_time:
+                query = query.filter(cls.discover_time < end_time)
 
-        # handle filter
-        filters = kwargs.get("filter")
-        if filters:
-            for item in filters:
-                if len(item.items()) > 0:
-                    name = item.get('name')
-                    if name == 'city':
-                        filter_city_list = True
-                        city_list = item.get('values')
-                    elif name:
-                        query.filter(getattr(cls, name).in_(item.get('values')))
+            # handle filter
+            filters = kwargs.get("filter")
+            if filters:
+                for item in filters:
+                    if len(item.items()) > 0:
+                        name = item.get('name')
+                        if name == 'city':
+                            filter_city_list = True
+                            city_list = item.get('values')
+                        elif name:
+                            query.filter(getattr(cls, name).in_(item.get('values')))
 
-        if filter_city_list:
-            query = query.filter(getattr(cls, 'city').in_(city_list))
-        # handle page_index and page size
-        page_idx = kwargs.get('page_index_begin')
-        page_size = kwargs.get('page_size')
+            if filter_city_list:
+                query = query.filter(getattr(cls, 'city').in_(city_list))
+            # handle page_index and page size
+            page_idx = kwargs.get('page_index_begin')
+            page_size = kwargs.get('page_size')
 
-        total = query.count()
-        # order by discovery time desc
-        query = query.order_by(sa.desc(cls.discover_time))
+            total = query.count()
+            # order by discovery time desc
+            query = query.order_by(sa.desc(cls.discover_time))
 
-        if page_idx is not None and page_size is not None:
-            idx = 0 if (page_idx - 1) < 0 else page_idx - 1
-            start = idx * page_size
-            query = query.offset(start).limit(page_size)
+            if page_idx is not None and page_size is not None:
+                idx = 0 if (page_idx - 1) < 0 else page_idx - 1
+                start = idx * page_size
+                query = query.offset(start).limit(page_size)
 
-        return (total, query.all())
+            return (total, query.all())
+
+    @classmethod
+    def get_city_filter(cls, city_list):
+        with Tr_Session() as session:
+            return session.query(cls.district_county).filter(
+                getattr(cls, 'city').in_(city_list)).distinct(
+                    cls.district_county
+                ).all()
 
     @classmethod
     def bulk_add(cls, kwargs_list):
@@ -200,5 +219,10 @@ class OrderList(EmptyModel):
             order = cls(**kwargs)
             order_list.append(order)
         if len(order_list) > 0:
-            db_trnas_session.add_all(order_list)
-            db_trnas_session.commit()
+            with Tr_Session() as session:
+                try:
+                    session.add_all(order_list)
+                    session.commit()
+                except Exception as e:
+                    session.rollback()
+                    raise e

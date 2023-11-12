@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 import uuid
 from datetime import datetime
-from common.database import EmptyModel, tr_session
+from common.database import EmptyModel, Tr_Session
 
 
 class ComputingMode(EmptyModel):
@@ -24,4 +24,9 @@ class ComputingMode(EmptyModel):
     def get_computed_state(cls):
         # stmt = sa.text(f"SELECT state FROM {cls.__tablename__};")
         # return tr_session.execute(stmt).scalar()
-        return tr_session.query(cls.state).first()[0]
+        with Tr_Session() as session:
+            try:
+                return session.query(cls.state).first()[0]
+            except Exception as e:
+                session.rollback()
+                raise e
